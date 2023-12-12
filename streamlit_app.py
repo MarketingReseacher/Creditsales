@@ -46,4 +46,4 @@ def Resp(Text, Gender, Relation):
         
 Response = Resp(user_input, Gender, Relation)
 
-st.write("The likelihood that this consumer avoids your brand in the future is:", Response, "%")
+#st.write("The likelihood that this consumer avoids your brand in the future is:", Response, "%")
