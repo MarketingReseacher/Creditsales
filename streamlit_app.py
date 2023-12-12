@@ -22,19 +22,21 @@ def Resp(T, G, R):
         Response = 0
     else:
         
-        if G == Female:
+        if G == "Female":
             GenderCoeff = 0
-        elif G == Male:
+        elif G == "Male":
             GenderCoeff = .01
-        elif G == Unknown:
+        elif G == "Unknown":
             GenderCoeff = .20
         else:
             GenderCoeff = .16
             
-        if R == Yes:
+        if R == "Yes":
             RelationCoeff =  -.06
         else:
             RelationCoeff = 0
+
+        st.write("The Relationship coeff is", RelationCoeff)
 
         analyzer = SentimentIntensityAnalyzer()
         Neg = analyzer.polarity_scores(T).get('compound') * 100
@@ -46,7 +48,7 @@ def Resp(T, G, R):
         Response = round(Prob, 2) * 100
         
     return Response
-        
+
 Response = Resp(user_input, Gender, Relation)
 
 st.write("The likelihood that this consumer avoids your brand in the future is:", Response, "%")
