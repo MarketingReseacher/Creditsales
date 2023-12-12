@@ -15,7 +15,7 @@ Relation = st.selectbox('Primary victim', ["Yes", "No"])
 
 def Resp(Text, Gender, Relation):
     if Text == "":
-        Response = 100
+        Response = 0
     else:
         if Gender == "Female":
             GenderCoeff = 0
