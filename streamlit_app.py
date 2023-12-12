@@ -6,7 +6,7 @@ nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 
-st.title("Brand Avoidance Likelihood")
+st.title("Brand Avoidance Likelihood Estimator")
 
 user_input = st.text_input("Please enter the consumer's failure description:")
 
@@ -15,6 +15,9 @@ analyzer = SentimentIntensityAnalyzer()
 def Comp(user_input):
     Neg = analyzer.polarity_scores(user_input).get('compound')
     return Neg
+
+
+st.write("The likelihood that this consumer avoids your brand in the future is:", Comp(user_input))
 
 st.caption("The likelihood that this consumer avoids your brand in the future is:")
 st.caption(Comp(user_input))
