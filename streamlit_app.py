@@ -28,11 +28,13 @@ def Resp(Text, Gender, Relation):
         RelationCoeff = 0
 
     analyzer = SentimentIntensityAnalyzer()
-    Neg = analyzer.polarity_scores(Text).get('compound')
+    Neg = analyzer.polarity_scores(Text).get('compound') * 100
 
     Cop = .0288489
 
-    Response = ((-.2098055 * Neg) + GenderCoeff + RelationCoeff + (1.053751 * Cop) - 1.477298)
+    Odds = ((-.2098055 * Neg) + GenderCoeff + RelationCoeff + (1.053751 * Cop) - 1.477298) * 100
+
+    Response = Odds/(1+Odds)
     
     return Response
     
