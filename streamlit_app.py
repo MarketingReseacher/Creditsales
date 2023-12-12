@@ -10,12 +10,6 @@ st.title("Brand Avoidance Likelihood Estimator")
 
 user_input = st.text_input("Please enter the consumer's failure description:")
 
-analyzer = SentimentIntensityAnalyzer()
-
-def Comp(user_input):
-    
-
-
 Gender = st.selectbox('Gender', ["Female", "Male","Unknown", "Unspecified"])
 Relation = st.selectbox('Primary victim', ["Yes", "No"])
 
@@ -32,7 +26,8 @@ def Resp(Text, Gender, Relation):
         RelationCoeff =  -.0689343
     else:
         RelationCoeff = 1
-        
+
+    analyzer = SentimentIntensityAnalyzer()
     Neg = analyzer.polarity_scores(Text).get('compound')
 
     Response = -.19 * Neg + GenderCoeff + RelationCoeff   
