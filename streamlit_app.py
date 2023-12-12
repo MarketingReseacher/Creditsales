@@ -1,8 +1,7 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
-
+import nltk
 
 st.title("Brand Avoidance Likelihood")
 
