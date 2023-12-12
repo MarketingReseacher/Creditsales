@@ -7,7 +7,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 st.title("Brand Avoidance Likelihood")
 
-user_input = st.text_input("Enter failure description")
+user_input = st.text_input("Please enter the consumer's failure description:")
 
 analyzer = SentimentIntensityAnalyzer()
 
