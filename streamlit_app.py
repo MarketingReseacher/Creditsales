@@ -8,7 +8,13 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 st.title("Brand Avoidance Likelihood Estimator")
 
 Gender = st.selectbox('Gender', ["Female", "Male","Unknown", "Unspecified"])
+st.write("The consumer's gender is:", Gender)
+
 Relation = st.selectbox('Primary victim', ["Yes", "No"])
+st.write("The consumer is the primary victim:", Relation)
+
+user_input = st.text_input("Please enter the consumer's failure description:")
+
 
 def Resp(Text, Gender, Relation):
     if Text == "":
@@ -37,11 +43,6 @@ def Resp(Text, Gender, Relation):
         Prob = (Odds/(1+Odds)) 
         Response = round(Prob, 2) * 100
     return Response
-
-st.write("The consumer's gender is:", Gender)
-st.write("The consumer is the primary victim:", Relation)
-
-user_input = st.text_input("Please enter the consumer's failure description:")
         
 Response = Resp(user_input, Gender, Relation)
 
