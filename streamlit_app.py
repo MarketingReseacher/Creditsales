@@ -6,7 +6,7 @@ import streamlit as st
 
 st.title("Brand Avoidance Likelihood")
 
-user_input = st.text_area("Enter failure description", Description)
+user_input = st.text_area("Enter failure description")
 
 num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
 num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
