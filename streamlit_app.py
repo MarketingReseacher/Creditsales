@@ -10,8 +10,6 @@ st.title("Brand Avoidance Likelihood Estimator")
 Gender = st.selectbox('Gender', ["Female", "Male","Unknown", "Unspecified"])
 Relation = st.selectbox('Primary victim', ["Yes", "No"])
 
-user_input = st.text_input("Please enter the consumer's failure description:")
-
 def Resp(Text, Gender, Relation):
     if Text == "":
         Response = 0
@@ -43,6 +41,8 @@ def Resp(Text, Gender, Relation):
 
 st.text(Gender)
 st.text(Relation)
+
+user_input = st.text_input("Please enter the consumer's failure description:")
         
 Response = Resp(user_input, Gender, Relation)
 
