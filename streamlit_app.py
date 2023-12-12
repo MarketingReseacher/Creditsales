@@ -18,7 +18,7 @@ user_input = st.text_input("Please enter the consumer's failure description:")
 
 def Resp(T, G, R):
     
-    if Text == "":
+    if T == "":
         Response = 0
     else:
         
@@ -37,7 +37,7 @@ def Resp(T, G, R):
             RelationCoeff = 0
 
         analyzer = SentimentIntensityAnalyzer()
-        Neg = analyzer.polarity_scores(Text).get('compound') * 100
+        Neg = analyzer.polarity_scores(T).get('compound') * 100
 
         Cop = .03
 
