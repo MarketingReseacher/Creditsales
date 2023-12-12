@@ -34,7 +34,9 @@ def Resp(Text, Gender, Relation):
 
     Odds = ((-.2098055 * Neg) + GenderCoeff + RelationCoeff + (1.053751 * Cop) - 1.477298)
 
-    Response = (Odds/(1+Odds)) * 100
+    Prob = (Odds/(1+Odds)) 
+
+    Response = round(Prob, 2) * 100
     
     return Response
     
