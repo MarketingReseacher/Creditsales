@@ -12,7 +12,7 @@ user_input = st.text_input("Enter failure description")
 analyzer = SentimentIntensityAnalyzer()
 
 def Comp(user_input):
-    Neg = analyzer.polarity_scores(user_input).get('neg')
+    Neg = analyzer.polarity_scores(user_input).get('compound')
     return Neg
 
 
