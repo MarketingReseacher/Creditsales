@@ -37,11 +37,11 @@ def Resp(T, G, R):
 
     Cop = .03
 
-    Odds = (-5.6 * Neg) + GenderCoeff + RelationCoeff + (1.05 * Cop) - .08
+    Odds = exp((-5.6 * Neg) + GenderCoeff + RelationCoeff + (1.05 * Cop) - .08)
 
     st.write(Odds)
     
-    Prob = (Odds/(1+Odds)) 
+    Prob = Odds/(1+Odds) 
 
     if T == "":
         Response = 0
