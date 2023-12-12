@@ -5,6 +5,9 @@ import nltk
 nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
+backgroundColor="#E1E1E1"
+textColor="#1C1962"
+
 st.header("Brand Avoidance Likelihood Estimator")
 
 Gender = st.selectbox('Consumer\'s gender:', ["Female", "Male","Unknown", "Unspecified"])
