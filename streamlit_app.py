@@ -32,7 +32,7 @@ def Resp(T, G, R):
         RelationCoeff = 0
 
     analyzer = SentimentIntensityAnalyzer()
-    Neg = analyzer.polarity_scores(T).get('compound') * 50
+    Neg = analyzer.polarity_scores(T).get('compound')
 
     Cop = .03
 
