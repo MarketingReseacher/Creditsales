@@ -37,7 +37,7 @@ def Resp(T, G, R):
 
     Cop = .03
 
-    Odds = ((-.21 * Neg) + GenderCoeff + RelationCoeff + (1.05 * Cop) - 1.48)
+    Odds = ((-5.6 * Neg) + GenderCoeff + RelationCoeff + (1.05 * Cop) - .08)
     Prob = (Odds/(1+Odds)) 
 
     if T == "":
