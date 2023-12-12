@@ -7,8 +7,8 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 st.title("Brand Avoidance Likelihood Estimator")
 
-Gender = st.selectbox('Gender', ["Female", "Male","Unknown", "Unspecified"])
-Relation = st.selectbox('Primary victim', ["Yes", "No"])
+Gender = st.selectbox('Consumr's gender', ["Female", "Male","Unknown", "Unspecified"])
+Relation = st.selectbox('Whether the consumer was the primary victim', ["Yes", "No"])
 
 user_input = st.text_input("Please enter the failure incident description:")
 
