@@ -40,6 +40,9 @@ def Resp(Text, Gender, Relation):
         Response = round(Prob, 2) * 100
  
     return Response
+
+st.text(Gender)
+st.text(Relation)
         
 Response = Resp(user_input, Gender, Relation)
 
