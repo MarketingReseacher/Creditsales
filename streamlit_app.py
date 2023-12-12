@@ -16,8 +16,8 @@ def Comp(user_input):
     Neg = analyzer.polarity_scores(user_input).get('compound')
     return Neg
 
-st.subheader("The likelihood that this consumer avoids your brand in the future is:")
-st.subheader(Comp(user_input))
+st.caption("The likelihood that this consumer avoids your brand in the future is:")
+st.caption(Comp(user_input))
 
 
 
