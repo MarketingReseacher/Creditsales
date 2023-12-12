@@ -39,9 +39,7 @@ def Resp(T, G, R):
 
     Answer = (-5.6 * Neg) + GenderCoeff + RelationCoeff + (1.05 * Cop) - .08
 
-    st.write(Answer)
-
-    Odds = np.exp(Answer)
+    Odds = np.exp("The likelihood that this consumer avoids your brand in the future is:", round(Answer,2))
 
     st.write(Odds)
     
