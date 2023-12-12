@@ -39,8 +39,8 @@ def Resp(Text, Gender, Relation):
  
     return Response
 
-st.text(Gender)
-st.text(Relation)
+st.write(Gender)
+st.write(Relation)
 
 user_input = st.text_input("Please enter the consumer's failure description:")
         
