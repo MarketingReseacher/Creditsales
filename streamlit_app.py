@@ -30,7 +30,7 @@ def Comp(user_input):
     Neg = analyzer.polarity_scores(user_input).get('compound')
     return Neg
 
-result = st.text("The likelihood that this consumer avoids your brand in the future is:" Comp(user_input))
+result = st.text("The likelihood that this consumer avoids your brand in the future is:", Comp(user_input))
 
 
 change_label_style(result)
