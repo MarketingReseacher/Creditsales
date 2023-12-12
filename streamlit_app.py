@@ -36,11 +36,10 @@ def Resp(Text, Gender, Relation):
         Odds = ((-.21 * Neg) + GenderCoeff + RelationCoeff + (1.053751 * Cop) - 1.48)
         Prob = (Odds/(1+Odds)) 
         Response = round(Prob, 2) * 100
- 
     return Response
 
-st.write(Gender)
-st.write(Relation)
+st.write("The consumer's gender is:", Gender)
+st.write("The consumer is the primary victim:", Relation)
 
 user_input = st.text_input("Please enter the consumer's failure description:")
         
