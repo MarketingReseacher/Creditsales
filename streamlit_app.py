@@ -22,9 +22,9 @@ def Resp(T, G, R):
         Response = 0
     else:
         
-        if G == "Female":
+        if G == Female:
             GenderCoeff = 0
-        elif G == "Male":
+        elif G == Male:
             GenderCoeff = .01
         elif G == "Unknown":
             GenderCoeff = .20
