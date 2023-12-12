@@ -16,20 +16,22 @@ st.write("The consumer is the primary victim:", Relation)
 user_input = st.text_input("Please enter the consumer's failure description:")
 
 
-def Resp(Text, Gender, Relation):
+def Resp(T, G, R):
+    
     if Text == "":
         Response = 0
     else:
-        if Gender == "Female":
+        
+        if G == "Female":
             GenderCoeff = 0
-        elif Gender == "Male":
+        elif G == "Male":
             GenderCoeff = .01
-        elif Gender == "Unknown":
+        elif G == "Unknown":
             GenderCoeff = .20
         else:
             GenderCoeff = .16
             
-        if Relation == "Yes":
+        if R == "Yes":
             RelationCoeff =  -.06
         else:
             RelationCoeff = 0
@@ -37,11 +39,12 @@ def Resp(Text, Gender, Relation):
         analyzer = SentimentIntensityAnalyzer()
         Neg = analyzer.polarity_scores(Text).get('compound') * 100
 
-        Cop = .0288489
+        Cop = .03
 
-        Odds = ((-.21 * Neg) + GenderCoeff + RelationCoeff + (1.053751 * Cop) - 1.48)
+        Odds = ((-.21 * Neg) + GenderCoeff + RelationCoeff + (1.05 * Cop) - 1.48)
         Prob = (Odds/(1+Odds)) 
         Response = round(Prob, 2) * 100
+        
     return Response
         
 Response = Resp(user_input, Gender, Relation)
