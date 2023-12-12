@@ -37,16 +37,14 @@ def Resp(T, G, R):
     Answer = (-5.6 * Neg) + GenderCoeff + RelationCoeff + (1.05 * Cop) - .08
 
     Odds = np.exp(Answer)
-
-    st.write("The odds of this consumer avoiding your brand in the future are:", round(Odds, 2))
     
     Prob = Odds/(1+Odds) 
 
     if T == "":
         Response = 0
     else:
+        st.write("The odds of this consumer avoiding your brand in the future are:", round(Odds, 2))
         Response = round(Prob, 2) * 100
-        
     return Response
 
 Response = Resp(user_input, Gender, Relation)
