@@ -17,7 +17,8 @@ def Comp(user_input):
     return Neg
 
 
-st.selectbox('Gender', ["Male","Female","Unknown", "Unspecified"])
+Gender = st.selectbox('Gender', ["Male","Female","Unknown", "Unspecified"])
+Relation = st.selectbox('Primary victim', ["Yes", "No"])
 
 
 st.write("The likelihood that this consumer avoids your brand in the future is:", Comp(user_input))
