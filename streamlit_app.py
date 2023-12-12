@@ -5,13 +5,12 @@ import nltk
 nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
-
 st.title("Brand Avoidance Likelihood Estimator")
-
-user_input = st.text_input("Please enter the consumer's failure description:")
 
 Gender = st.selectbox('Gender', ["Female", "Male","Unknown", "Unspecified"])
 Relation = st.selectbox('Primary victim', ["Yes", "No"])
+
+user_input = st.text_input("Please enter the consumer's failure description:")
 
 def Resp(Text, Gender, Relation):
     if Text == "":
@@ -41,7 +40,6 @@ def Resp(Text, Gender, Relation):
  
     return Response
         
-    
 Response = Resp(user_input, Gender, Relation)
 
 st.write("The likelihood that this consumer avoids your brand in the future is:", Response, "%")
