@@ -41,7 +41,7 @@ def Resp(T, G, R):
 
     st.write(Answer)
 
-    Odds = exp(Answer)
+    Odds = np.exp(Answer)
 
     st.write(Odds)
     
