@@ -5,8 +5,8 @@ import nltk
 nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
-backgroundColor="#E1E1E1"
-textColor="#1C1962"
+secondaryBackgroundColor="#B7B6B6"
+textColor="#3C357C"
 
 st.header("Brand Avoidance Likelihood Estimator")
 
