@@ -26,12 +26,12 @@ def Resp(T, G, R):
             GenderCoeff = 0
         elif G == Male:
             GenderCoeff = .01
-        elif G == "Unknown":
+        elif G == Unknown:
             GenderCoeff = .20
         else:
             GenderCoeff = .16
             
-        if R == "Yes":
+        if R == Yes:
             RelationCoeff =  -.06
         else:
             RelationCoeff = 0
