@@ -5,7 +5,7 @@ import nltk
 nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
-st.write(“## Brand Avoidance Likelihood Estimator”) 
+st.write("## Brand Avoidance Likelihood Estimator") 
 
 Gender = st.selectbox('Consumer\'s gender:', ["Female", "Male","Unknown", "Unspecified"])
 Relation = st.selectbox('Whether the consumer was the primary victim:', ["Yes", "No"])
