@@ -15,6 +15,6 @@ def Comp(user_input):
     Neg = analyzer.polarity_scores(user_input).get('compound')
     return Neg
 
-
+st.text("The likelihood that this consumer avoids your brand in the future is:")
 st.text(Comp(user_input))
 
