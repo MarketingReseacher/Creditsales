@@ -17,7 +17,7 @@ def Comp(user_input):
     return Neg
 
 
-Gender = st.selectbox('Gender', ["Male","Female","Unknown", "Unspecified"])
+Gender = st.selectbox('Gender', ["Female", "Male","Unknown", "Unspecified"])
 Relation = st.selectbox('Primary victim', ["Yes", "No"])
 
 
