@@ -31,8 +31,6 @@ def Resp(T, G, R):
     else:
         RelationCoeff = 0
 
-    st.write("The Relationship coeff is", RelationCoeff)
-
     analyzer = SentimentIntensityAnalyzer()
     Neg = analyzer.polarity_scores(T).get('compound') * 100
 
