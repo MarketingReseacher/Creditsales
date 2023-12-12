@@ -39,7 +39,7 @@ def Resp(T, G, R):
     Odds = ((-.21 * Neg) + GenderCoeff + RelationCoeff + (1.05 * Cop) - 1.48)
     Prob = (Odds/(1+Odds)) 
 
-    if T = "":
+    if T == "":
         Response = 0
     else:
         Response = round(Prob, 2) * 100
