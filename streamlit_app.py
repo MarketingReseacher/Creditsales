@@ -19,8 +19,5 @@ def Comp(user_input):
 
 st.write("The likelihood that this consumer avoids your brand in the future is:", Comp(user_input))
 
-st.caption("The likelihood that this consumer avoids your brand in the future is:")
-st.caption(Comp(user_input))
-
 
 
