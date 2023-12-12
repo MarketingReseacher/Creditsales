@@ -32,9 +32,9 @@ def Resp(Text, Gender, Relation):
 
     Cop = .0288489
 
-    Odds = ((-.2098055 * Neg) + GenderCoeff + RelationCoeff + (1.053751 * Cop) - 1.477298) * 100
+    Odds = ((-.2098055 * Neg) + GenderCoeff + RelationCoeff + (1.053751 * Cop) - 1.477298)
 
-    Response = Odds/(1+Odds)
+    Response = (Odds/(1+Odds)) * 100
     
     return Response
     
