@@ -19,13 +19,14 @@ def Resp(Text, Gender, Relation):
         if Gender == "Female":
             GenderCoeff = 0
         elif Gender == "Male":
-            GenderCoeff = .0067003
+            GenderCoeff = .01
         elif Gender == "Unknown":
-            GenderCoeff = .1997189
+            GenderCoeff = .20
         else:
-            GenderCoeff = .1570801
+            GenderCoeff = .16
+            
         if Relation == "Yes":
-            RelationCoeff =  -.0597732
+            RelationCoeff =  -.06
         else:
             RelationCoeff = 0
 
@@ -34,7 +35,7 @@ def Resp(Text, Gender, Relation):
 
         Cop = .0288489
 
-        Odds = ((-.2098055 * Neg) + GenderCoeff + RelationCoeff + (1.053751 * Cop) - 1.477298)
+        Odds = ((-.21 * Neg) + GenderCoeff + RelationCoeff + (1.053751 * Cop) - 1.48)
         Prob = (Odds/(1+Odds)) 
         Response = round(Prob, 2) * 100
  
