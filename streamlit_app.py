@@ -14,34 +14,34 @@ Gender = st.selectbox('Gender', ["Female", "Male","Unknown", "Unspecified"])
 Relation = st.selectbox('Primary victim', ["Yes", "No"])
 
 def Resp(Text, Gender, Relation):
-    if Gender == "Female":
-        GenderCoeff = 0
-    elif Gender == "Male":
-        GenderCoeff = .0067003
-    elif Gender == "Unknown":
-        GenderCoeff = .1997189
+    if Text == "":
+        Response = 100
     else:
-        GenderCoeff = .1570801
-    if Relation == "Yes":
-        RelationCoeff =  -.0597732
-    else:
-        RelationCoeff = 0
+        if Gender == "Female":
+            GenderCoeff = 0
+        elif Gender == "Male":
+            GenderCoeff = .0067003
+        elif Gender == "Unknown":
+            GenderCoeff = .1997189
+        else:
+            GenderCoeff = .1570801
+        if Relation == "Yes":
+            RelationCoeff =  -.0597732
+        else:
+            RelationCoeff = 0
 
-    analyzer = SentimentIntensityAnalyzer()
-    Neg = analyzer.polarity_scores(Text).get('compound') * 100
+        analyzer = SentimentIntensityAnalyzer()
+        Neg = analyzer.polarity_scores(Text).get('compound') * 100
 
-    Cop = .0288489
+        Cop = .0288489
 
-    Odds = ((-.2098055 * Neg) + GenderCoeff + RelationCoeff + (1.053751 * Cop) - 1.477298)
-
-    Prob = (Odds/(1+Odds)) 
-
-    Response = round(Prob, 2) * 100
-    
+        Odds = ((-.2098055 * Neg) + GenderCoeff + RelationCoeff + (1.053751 * Cop) - 1.477298)
+        Prob = (Odds/(1+Odds)) 
+        Response = round(Prob, 2) * 100
+ 
     return Response
+        
     
-    
-
 Response = Resp(user_input, Gender, Relation)
 
 st.write("The likelihood that this consumer avoids your brand in the future is:", Response, "%")
