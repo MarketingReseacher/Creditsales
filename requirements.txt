@@ -1,4 +1,4 @@
-altair
 pandas
+numpy
 streamlit
 nltk==3.5
