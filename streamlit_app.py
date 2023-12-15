@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import nltk
+nltk.download('vader_lexicon')
 import contractions
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
