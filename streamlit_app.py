@@ -123,7 +123,6 @@ Comp = analyzer.polarity_scores(user_input).get('compound')
 
 st.write("The compound sentiment score of the description is:", Comp, "%")
 
-
 Response = Resp(Relative, Comp, Gender, Relation)
 
 st.write("The likelihood that this consumer avoids your brand in the future is:", Response, "%")
