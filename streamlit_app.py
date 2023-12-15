@@ -75,10 +75,10 @@ def Resp(T, G, R):
                beforeprevious = previous 
                previous = item[0]
                        
-            Length = len(text.split())   
+            Length = len(text.split())
             Future = (len(future))/Length
             Past = (len(past))/Length
-            Relative = Future - Past       
+            Relative = Future - Past
                           
             Compound = analyzer.polarity_scores(text).get('compound')
            
