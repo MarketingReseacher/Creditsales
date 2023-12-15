@@ -110,6 +110,12 @@ def Resp(Rel, Com, G, R):
 
 
 Tenses = MyTense(user_input)
-st.write(type(Tenses['future']))
+Future = Tenses['future']
+Past = Tenses['past'] 
 Length = len(user_input.split())
+FuturePR = Future/Length
+PastPR = Past/Length
+
+st.write("The percentage of future-focused words in the response is:", FuturePR, "%")
+st.write("The percentage of past-focused words in the response is:", PastPR, "%")
 
