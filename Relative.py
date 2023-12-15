@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
-
 import nltk
+nltk.download('vader_lexicon')
 import contractions
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
