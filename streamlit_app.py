@@ -33,7 +33,10 @@ def Resp(T, G, R):
 
     TenseAndSent = Relative(text)
 
-    Relative = TenseAndSent['
+    Relative = TenseAndSent['Relative']
+    Future = TenseAndSent['Future']
+    Past = TenseAndSent['Past']
+    Comp = TenseAndSent['Compound']
 
     Cop = .02
 
