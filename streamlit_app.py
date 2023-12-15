@@ -3,6 +3,8 @@ import pandas as pd
 import streamlit as st
 import nltk
 nltk.download('vader_lexicon')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
 import contractions
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
@@ -41,6 +43,7 @@ def MyTense(t):
     Textclean = ExpandContractions(Textclean)
                
     def POS(text):
+               
         tokens = nltk.word_tokenize(text)
         tagged = nltk.pos_tag(tokens)
                    
