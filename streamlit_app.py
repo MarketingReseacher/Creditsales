@@ -13,7 +13,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 st.write("## Brand Avoidance Likelihood Estimator") 
 
-st.write("### User Input")
+st.write("##### User Input")
 
 Gender = st.selectbox('Consumer\'s gender:', ["Female", "Male","Unknown", "Unspecified"])
 Relation = st.selectbox('Whether the consumer was the primary victim:', ["Yes", "No"])
@@ -111,7 +111,7 @@ Tenses = MyTense(user_input)
 Future = Tenses['future']
 Past = Tenses['past'] 
 
-st.write("### Results")
+st.write("##### Results")
 
 if user_input == "":
     st.write("You have not entered a failure incident description yet.")
