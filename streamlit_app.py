@@ -113,9 +113,9 @@ Tenses = MyTense(user_input)
 Future = Tenses['future']
 Past = Tenses['past'] 
 Length = len(user_input.split())
-FuturePR = Future/Length
-PastPR = Past/Length
+FuturePR = round(Future/Length * 100, 2)
+PastPR = round(Past/Length * 100, 2) 
 
-st.write("The percentage of future-focused words in the response is:", round(FuturePR * 100, 2), "%")
-st.write("The percentage of past-focused words in the response is:", round(PastPR * 100, 2), "%")
+st.write("The percentage of future-focused words in the response is:", FuturePR, "%")
+st.write("The percentage of past-focused words in the response is:", PastPR, "%")
 
