@@ -100,11 +100,8 @@ def Resp(Rel, Com, G, R):
     
     Prob = Odds/(1+Odds) 
 
-    if T == "":
-        Response = 0
-    else:
-        st.write("The odds of this consumer avoiding your brand in the future are:", round(Odds, 2))
-        Response = round(Prob, 2) * 100
+    st.write("The odds of this consumer avoiding your brand in the future are:", round(Odds, 2))
+    Response = round(Prob, 2) * 100
     return Response
 
 
