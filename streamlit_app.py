@@ -5,6 +5,8 @@ import nltk
 nltk.download('vader_lexicon')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
+nltk.download('punkt')
+from nltk import word_tokenize
 import contractions
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
