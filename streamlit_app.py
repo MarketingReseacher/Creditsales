@@ -73,7 +73,6 @@ def MyTense(t):
         return response
            
     Tenses = POS(Textclean)
-    Tenses['Length'] = len(t.split())
            
     return Tenses
 
@@ -111,8 +110,10 @@ def Resp(Rel, Com, G, R):
 
 
 Tenses = MyTense(user_input)
-Future = Tenses['future']
-Past = Tense['past']
+Length = len(user_input.split())
+Future = Tenses['future']/Length
+Past = Tense['past']/Length
+Relative = Future - Past
 Comp = analyzer.polarity_scores(user_input).get('compound')
 
 Response = Resp(Relative, Comp, Gender, Relation)
