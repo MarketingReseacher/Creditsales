@@ -4,7 +4,9 @@ import streamlit as st
 import nltk
 nltk.download('vader_lexicon')
 import contractions
+import Relative
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 
 st.write("## Brand Avoidance Likelihood Estimator") 
 
@@ -18,24 +20,24 @@ def Resp(T, G, R):
     if G == "Female":
         GenderCoeff = 0
     elif G == "Male":
-        GenderCoeff = .01
+        GenderCoeff = .02
     elif G == "Unknown":
-        GenderCoeff = .20
+        GenderCoeff = .21
     else:
-        GenderCoeff = .16
+        GenderCoeff = .18
             
     if R == "Yes":
-        RelationCoeff =  -.06
+        RelationCoeff =  -.05
     else:
         RelationCoeff = 0
 
-    analyzer = SentimentIntensityAnalyzer()
-    
-    Neg = analyzer.polarity_scores(T).get('compound')
+    TenseAndSent = Relative(text)
 
-    Cop = .03
+    Relative = TenseAndSent['
 
-    Answer = (-5.6 * Neg) + GenderCoeff + RelationCoeff + (1.05 * Cop) - .08
+    Cop = .02
+
+    Answer = (-.19 * Relative) + GenderCoeff + RelationCoeff + (.01 * Comp) + (1.14 * Cop) - 2.02
 
     Odds = np.exp(Answer)
     
