@@ -100,7 +100,6 @@ def Resp(Rel, Com, G, R):
     
     Prob = Odds/(1+Odds) 
 
-    st.write("The odds of this consumer avoiding your brand in the future are:", round(Odds, 2))
     Response = round(Prob, 2) * 100
     return Response
 
@@ -121,6 +120,9 @@ Relative = FuturePR - PastPR
 st.write("The relative future focus of the description is:", Relative, "%")
 
 Comp = analyzer.polarity_scores(user_input).get('compound')
+
+st.write("The compound sentiment score of the description is:", Comp, "%")
+
 
 Response = Resp(Relative, Comp, Gender, Relation)
 
