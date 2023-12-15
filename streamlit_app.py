@@ -110,6 +110,6 @@ def Resp(Rel, Com, G, R):
 
 
 Tenses = MyTense(user_input)
-st.write(Tenses)
+st.write(Tenses['future'])
 Length = len(user_input.split())
 
