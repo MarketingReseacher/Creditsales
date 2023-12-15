@@ -75,7 +75,7 @@ def Resp(T, G, R):
                beforeprevious = previous 
                previous = item[0]
                        
-            Length = len(text.split())
+            Length = text.split().len()
             Future = (len(future))/Length
             Past = (len(past))/Length
             Relative = Future - Past
