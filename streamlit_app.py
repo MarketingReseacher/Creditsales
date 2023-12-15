@@ -119,9 +119,9 @@ Relative = FuturePR - PastPR
 
 st.write("The relative future focus of the description is:", Relative, "%")
 
-Comp = analyzer.polarity_scores(user_input).get('compound')
+Comp = round(analyzer.polarity_scores(user_input).get('compound'), 2)
 
-st.write("The compound sentiment score of the description is:", Comp, "%")
+st.write("The compound sentiment score of the description is:", Comp)
 
 Response = Resp(Relative, Comp, Gender, Relation)
 
