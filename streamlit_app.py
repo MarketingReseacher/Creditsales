@@ -119,3 +119,14 @@ PastPR = round(Past/Length * 100, 2)
 st.write("The percentage of future-focused words in the failure incident description is:", FuturePR, "%")
 st.write("The percentage of past-focused words in the failure incident description is:", PastPR, "%")
 
+Relative = FuturePR - PastPR
+
+st.write("The relative future focus of the description is:", Relative, "%")
+
+Comp = analyzer.polarity_scores(user_input).get('compound')
+
+Response = Resp(Relative, Comp, Gender, Relation)
+
+st.write("The likelihood that this consumer avoids your brand in the future is:", Response, "%")
+
+
