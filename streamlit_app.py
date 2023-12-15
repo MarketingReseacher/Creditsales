@@ -45,7 +45,7 @@ def Resp(T, G, R):
     else:
         RelationCoeff = 0
            
-    def Tense(T):
+    def MyTense(T):
                
         Textclean = T.str.lower() 
                
@@ -74,28 +74,29 @@ def Resp(T, G, R):
                        
                beforeprevious = previous 
                previous = item[0]
-                       
-            Length = text.split().len()
-            Future = (len(future))/Length
-            Past = (len(past))/Length
-            Relative = Future - Past
-                          
-            Compound = analyzer.polarity_scores(text).get('compound')
-           
-            response = {"Future" : Future, "Past": Past, "Relative" : Relative, "compound" : Compound}
+
+            Future = len(future)
+            Past = len(past)
+
+            response = {"future" : Future, "past": Past}
                    
             return response
            
-            Response = POS(Textclean)
-           
-            return Response
+            Tenses = POS(Textclean)
 
-    TenseAndSent = Tense(T)
+            Length = T.split().len()
+            Tenses['Future'] = Tenses['future']/Length
+            Tenses['Past'] = Tenses['past']/Length
+            Tenses['Relative'] = Tenses['Future'] - Tenses['Past']
+                          
+            return Tenses
 
-    Relative = TenseAndSent['Relative']
-    Future = TenseAndSent['Future']
-    Past = TenseAndSent['Past']
-    Comp = TenseAndSent['Compound']
+    Tenses = MyTense(T)
+
+    Relative = Tenses['Relative']
+    Future = Tenses['Future']
+    Past = Tense['Past']
+    Comp = analyzer.polarity_scores(T).get('compound')
 
     Cop = .02
 
