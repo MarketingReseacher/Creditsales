@@ -1,11 +1,8 @@
-import re
-import string
 import numpy as np
 import pandas as pd
 import streamlit as st
 import nltk
 import contractions
-nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 st.write("## Brand Avoidance Likelihood Estimator") 
