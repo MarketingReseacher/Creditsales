@@ -102,7 +102,8 @@ def Resp(Rel, Com, G, R):
     
     Prob = Odds/(1+Odds) 
 
-    Response = round(Prob, 2) * 100
+    Response = round(Prob * 100, 2)
+           
     return Response
 
 
