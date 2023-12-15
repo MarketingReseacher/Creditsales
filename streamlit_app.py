@@ -4,7 +4,6 @@ import streamlit as st
 import nltk
 nltk.download('vader_lexicon')
 import contractions
-import Relative
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 
