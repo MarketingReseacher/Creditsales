@@ -38,7 +38,7 @@ def MyTense(t):
         Expanded = contractions.fix(text)
         return Expanded
            
-    Textclean = ExpandedContractions(Textclean)
+    Textclean = ExpandContractions(Textclean)
                
     def POS(text):
         tokens = nltk.word_tokenize(text)
