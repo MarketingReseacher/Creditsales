@@ -29,7 +29,52 @@ FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime',
 
 analyzer = SentimentIntensityAnalyzer()
 
-def Resp(T, G, R):
+           
+def MyTense(t):
+               
+    Textclean = t.str.lower() 
+               
+    def ExpandContractions(text):
+        Expanded = contractions.fix(text)
+        return Expanded
+           
+    Textclean = ExpandedContractions(Textclean)
+               
+    def POS(text):
+        tokens = nltk.word_tokenize(text)
+        tagged = nltk.pos_tag(tokens)
+                   
+        past = []
+        future = []
+        previous = ""
+        beforeprevious = ""
+                   
+        for item in tagged:
+            if (item[0] in PastDic) or (item[1] in ["VBD", "VBN"]) or (item[1] == "VBG" and previous == "been" and beforeprevious == "had") or (item[1] == "VBG" and previous in ["was", "were", "wasnt", "werent"]) or (item[1] == "VBG" and previous == "not" and beforeprevious in ["was", "were", "wasnt", "werent"]):
+                past.append(item[0])
+            elif (item[0] in FutureDic) or (item[1] in ["VB", "VBZ", "VBP"] and previous in ["will", 'shall', 'wont', 'may', 'might', "would"]) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "not" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might']) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "to" and beforeprevious == "going") or (item[1] == "VBG" and previous == "be" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might', "not"]): 
+                future.append(item[0])  
+            else:
+                pass
+                       
+            beforeprevious = previous 
+            previous = item[0]
+
+        Future = len(future)
+        Past = len(past)
+
+        response = {"future" : Future, "past": Past}
+                   
+        return response
+           
+    Tenses = POS(Textclean)
+    Length = t.split().len()
+    Tenses['Future'] = Tenses['future']/Length
+    Tenses['Past'] = Tenses['past']/Length
+    Tenses['Relative'] = Tenses['Future'] - Tenses['Past']
+        return Tenses
+
+def Resp(Rel, Com, G, R):
        
     if G == "Female":
         GenderCoeff = 0
@@ -44,63 +89,10 @@ def Resp(T, G, R):
         RelationCoeff =  -.05
     else:
         RelationCoeff = 0
-           
-    def MyTense(t):
-               
-        Textclean = t.str.lower() 
-               
-        def ExpandContractions(text):
-            Expanded = contractions.fix(text)
-            return Expanded
-           
-        Textclean = ExpandedContractions(Textclean)
-               
-        def POS(text):
-            tokens = nltk.word_tokenize(text)
-            tagged = nltk.pos_tag(tokens)
-                   
-            past = []
-            future = []
-            previous = ""
-            beforeprevious = ""
-                   
-            for item in tagged:
-                if (item[0] in PastDic) or (item[1] in ["VBD", "VBN"]) or (item[1] == "VBG" and previous == "been" and beforeprevious == "had") or (item[1] == "VBG" and previous in ["was", "were", "wasnt", "werent"]) or (item[1] == "VBG" and previous == "not" and beforeprevious in ["was", "were", "wasnt", "werent"]):
-                    past.append(item[0])
-                elif (item[0] in FutureDic) or (item[1] in ["VB", "VBZ", "VBP"] and previous in ["will", 'shall', 'wont', 'may', 'might', "would"]) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "not" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might']) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "to" and beforeprevious == "going") or (item[1] == "VBG" and previous == "be" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might', "not"]): 
-                    future.append(item[0])  
-                else:
-                    pass
-                       
-                beforeprevious = previous 
-                previous = item[0]
-
-            Future = len(future)
-            Past = len(past)
-
-            response = {"future" : Future, "past": Past}
-                   
-            return response
-           
-            Tenses = POS(Textclean)
-
-            Length = t.split().len()
-            Tenses['Future'] = Tenses['future']/Length
-            Tenses['Past'] = Tenses['past']/Length
-            Tenses['Relative'] = Tenses['Future'] - Tenses['Past']
-                          
-            return Tenses
-
-    Tenses = MyTense(T)
-
-    Relative = Tenses['Relative']
-    Future = Tenses['Future']
-    Past = Tense['Past']
-    Comp = analyzer.polarity_scores(T).get('compound')
 
     Cop = .02
 
-    Answer = (-.19 * Relative) + GenderCoeff + RelationCoeff + (.01 * Comp) + (1.14 * Cop) - 2.02
+    Answer = (-.19 * Rel) + GenderCoeff + RelationCoeff + (.01 * Com) + (1.14 * Cop) - 2.02
 
     Odds = np.exp(Answer)
     
@@ -113,6 +105,14 @@ def Resp(T, G, R):
         Response = round(Prob, 2) * 100
     return Response
 
-Response = Resp(user_input, Gender, Relation)
+
+
+Tenses = MyTense(user_input)
+Relative = Tenses['Relative']
+Future = Tenses['Future']
+Past = Tense['Past']
+Comp = analyzer.polarity_scores(user_input).get('compound')
+
+Response = Resp(Relative, Comp, Gender, Relation)
 
 st.write("The likelihood that this consumer avoids your brand in the future is:", Response, "%")
