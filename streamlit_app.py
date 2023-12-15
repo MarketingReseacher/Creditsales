@@ -18,7 +18,7 @@ st.write("##### User Input")
 Gender = st.selectbox('Consumer\'s gender:', ["Female", "Male","Unknown", "Unspecified"])
 Relation = st.selectbox('Whether the consumer was the primary victim:', ["Yes", "No"])
 
-user_input = st.text_input("The failure incident description:")
+user_input = st.text_input("Brand failure incident description:")
 
 PastDic = ['past', 'previously', 'previous', 'earlier', 'historically', 'formerly',  'history', 'before', 'prior', 'back', 
            'retroactively', 'priorly', 'hitherto', 'anteriorly', 'erstwhile', 'yesterday', 'already', 
