@@ -50,30 +50,30 @@ def Resp(T, G, R):
         Textclean = T.str.lower() 
                
         def ExpandContractions(text):
-           Expanded = contractions.fix(text)
-           return Expanded
+            Expanded = contractions.fix(text)
+            return Expanded
            
         Textclean = ExpandedContractions(Textclean)
                
         def POS(text):
-           tokens = nltk.word_tokenize(text)
-           tagged = nltk.pos_tag(tokens)
+            tokens = nltk.word_tokenize(text)
+            tagged = nltk.pos_tag(tokens)
                    
-           past = []
-           future = []
-           previous = ""
-           beforeprevious = ""
+            past = []
+            future = []
+            previous = ""
+            beforeprevious = ""
                    
-           for item in tagged:
-               if (item[0] in PastDic) or (item[1] in ["VBD", "VBN"]) or (item[1] == "VBG" and previous == "been" and beforeprevious == "had") or (item[1] == "VBG" and previous in ["was", "were", "wasnt", "werent"]) or (item[1] == "VBG" and previous == "not" and beforeprevious in ["was", "were", "wasnt", "werent"]):
-                   past.append(item[0])
-               elif (item[0] in FutureDic) or (item[1] in ["VB", "VBZ", "VBP"] and previous in ["will", 'shall', 'wont', 'may', 'might', "would"]) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "not" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might']) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "to" and beforeprevious == "going") or (item[1] == "VBG" and previous == "be" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might', "not"]): 
-                   future.append(item[0])  
-               else:
-                   pass
+            for item in tagged:
+                if (item[0] in PastDic) or (item[1] in ["VBD", "VBN"]) or (item[1] == "VBG" and previous == "been" and beforeprevious == "had") or (item[1] == "VBG" and previous in ["was", "were", "wasnt", "werent"]) or (item[1] == "VBG" and previous == "not" and beforeprevious in ["was", "were", "wasnt", "werent"]):
+                    past.append(item[0])
+                elif (item[0] in FutureDic) or (item[1] in ["VB", "VBZ", "VBP"] and previous in ["will", 'shall', 'wont', 'may', 'might', "would"]) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "not" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might']) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "to" and beforeprevious == "going") or (item[1] == "VBG" and previous == "be" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might', "not"]): 
+                    future.append(item[0])  
+                else:
+                    pass
                        
-               beforeprevious = previous 
-               previous = item[0]
+                beforeprevious = previous 
+                previous = item[0]
 
             Future = len(future)
             Past = len(past)
