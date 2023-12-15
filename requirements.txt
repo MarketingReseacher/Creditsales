@@ -2,3 +2,6 @@ pandas
 numpy
 streamlit
 nltk
+re
+string
+contractions
