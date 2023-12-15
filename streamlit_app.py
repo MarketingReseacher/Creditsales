@@ -72,7 +72,7 @@ def MyTense(t):
     Tenses['Future'] = Tenses['future']/Length
     Tenses['Past'] = Tenses['past']/Length
     Tenses['Relative'] = Tenses['Future'] - Tenses['Past']
-        return Tenses
+    return Tenses
 
 def Resp(Rel, Com, G, R):
        
