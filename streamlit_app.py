@@ -116,6 +116,6 @@ Length = len(user_input.split())
 FuturePR = round(Future/Length * 100, 2)
 PastPR = round(Past/Length * 100, 2) 
 
-st.write("The percentage of future-focused words in the response is:", FuturePR, "%")
-st.write("The percentage of past-focused words in the response is:", PastPR, "%")
+st.write("The percentage of future-focused words in the failure incident description is:", FuturePR, "%")
+st.write("The percentage of past-focused words in the failure incident description is:", PastPR, "%")
 
