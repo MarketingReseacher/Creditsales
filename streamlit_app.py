@@ -1,5 +1,3 @@
-pip install contractions
-
 import re
 import string
 import numpy as np
