@@ -39,7 +39,6 @@ def Tense(Text):
         
         past = []
         future = []
-        compound = []
         previous = ""
         beforeprevious = ""
         
@@ -55,15 +54,18 @@ def Tense(Text):
             beforeprevious = previous 
             previous = item[0]
             
-            
-    
-        compound.append(analyzer.polarity_scores(text).get('compound'))
+        Length = len(text.split())   
+        Future = (len(future))/Length
+        Past = (len(past))/Length
+        Relative = Future - Past       
+               
+        Compound = analyzer.polarity_scores(text).get('compound')
 
             
-        tense = {"future" : future, "past": past, "compound" : compound}
+        response = {"Future" : Future, "Past": Past, "Relative" : Relative, "compound" : Compound}
         
-        return tense
+        return response
 
-    Tense = Textclean.apply(POS)
+    Response = Textclean.apply(POS)
 
-    return Tense
+    return Response
