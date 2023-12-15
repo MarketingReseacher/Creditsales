@@ -32,7 +32,7 @@ analyzer = SentimentIntensityAnalyzer()
            
 def MyTense(t):
                
-    Textclean = t.str.lower() 
+    Textclean = t.lower() 
                
     def ExpandContractions(text):
         Expanded = contractions.fix(text)
