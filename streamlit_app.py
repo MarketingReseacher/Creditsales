@@ -113,10 +113,11 @@ Past = Tenses['past']
 
 st.write("##### Results")
 
-if user_input == "" or user_input == " ":
+Length = len(user_input.split())
+
+if Length == 0:
     st.write("You have not entered a failure incident description yet.")
 else:
-    Length = len(user_input.split())
     FuturePR = round(Future/Length * 100, 2)
     PastPR = round(Past/Length * 100, 2) 
     st.write("Percentage of future-focused words in the description:", FuturePR, "%")
