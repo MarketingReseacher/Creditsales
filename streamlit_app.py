@@ -110,12 +110,6 @@ def Resp(Rel, Com, G, R):
 
 
 Tenses = MyTense(user_input)
+st.write(Tenses)
 Length = len(user_input.split())
-Future = Tenses['future']/Length
-Past = Tense['past']/Length
-Relative = Future - Past
-Comp = analyzer.polarity_scores(user_input).get('compound')
 
-Response = Resp(Relative, Comp, Gender, Relation)
-
-st.write("The likelihood that this consumer avoids your brand in the future is:", Response, "%")
