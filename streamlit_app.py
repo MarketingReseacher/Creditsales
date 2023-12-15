@@ -45,9 +45,9 @@ def Resp(T, G, R):
     else:
         RelationCoeff = 0
            
-    def MyTense(T):
+    def MyTense(t):
                
-        Textclean = T.str.lower() 
+        Textclean = t.str.lower() 
                
         def ExpandContractions(text):
             Expanded = contractions.fix(text)
@@ -84,7 +84,7 @@ def Resp(T, G, R):
            
             Tenses = POS(Textclean)
 
-            Length = T.split().len()
+            Length = t.split().len()
             Tenses['Future'] = Tenses['future']/Length
             Tenses['Past'] = Tenses['past']/Length
             Tenses['Relative'] = Tenses['Future'] - Tenses['Past']
