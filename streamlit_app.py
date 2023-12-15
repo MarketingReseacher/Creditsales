@@ -109,19 +109,20 @@ Tenses = MyTense(user_input)
 Future = Tenses['future']
 Past = Tenses['past'] 
 
-    if user_input = "":
-        st.write("You have not entered a failure incident description yet:", FuturePR, "%")
-    else:
-        Length = len(user_input.split())
-        FuturePR = round(Future/Length * 100, 2)
-        PastPR = round(Past/Length * 100, 2) 
-        st.write("The percentage of future-focused words in the description:", FuturePR, "%")
-        st.write("The percentage of past-focused words in the description:", PastPR, "%")
-        Relative = FuturePR - PastPR
-        st.write("The relative future focus of the description:", Relative, "%")
-        Comp = round(analyzer.polarity_scores(user_input).get('compound'), 2)
-        st.write("The compound sentiment score of the description:", Comp)
-        Response = Resp(Relative, Comp, Gender, Relation)
+if user_input = "":
+    st.write("You have not entered a failure incident description yet:", FuturePR, "%")
+else:
+    Length = len(user_input.split())
+    FuturePR = round(Future/Length * 100, 2)
+    PastPR = round(Past/Length * 100, 2) 
+    st.write("The percentage of future-focused words in the description:", FuturePR, "%")
+    st.write("The percentage of past-focused words in the description:", PastPR, "%")
+    Relative = FuturePR - PastPR
+    st.write("The relative future focus of the description:", Relative, "%")
+    Comp = round(analyzer.polarity_scores(user_input).get('compound'), 2)
+    st.write("The compound sentiment score of the description:", Comp)
+    Response = Resp(Relative, Comp, Gender, Relation)
+    st.write("The likelihood that this consumer avoids the brand in the future:", Response, "%")
 
 
 
@@ -133,6 +134,6 @@ Past = Tenses['past']
 
 
 
-st.write("The likelihood that this consumer avoids the brand in the future:", Response, "%")
+
 
 
