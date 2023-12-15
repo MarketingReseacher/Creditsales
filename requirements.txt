@@ -2,6 +2,4 @@ pandas
 numpy
 streamlit
 nltk==3.6.2
-re
-string
 contractions
