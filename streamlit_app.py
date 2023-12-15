@@ -113,7 +113,7 @@ Past = Tenses['past']
 
 st.write("##### Results")
 
-if user_input == "":
+if user_input == "" or user_input == " ":
     st.write("You have not entered a failure incident description yet.")
 else:
     Length = len(user_input.split())
