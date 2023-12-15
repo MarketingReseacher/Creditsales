@@ -73,7 +73,7 @@ def MyTense(t):
         return response
            
     Tenses = POS(Textclean)
-    Length = t.split().len()
+    Length = len(t.split())
     Tenses['Future'] = Tenses['future']/Length
     Tenses['Past'] = Tenses['past']/Length
     Tenses['Relative'] = Tenses['Future'] - Tenses['Past']
