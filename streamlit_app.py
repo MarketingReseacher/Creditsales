@@ -111,9 +111,8 @@ def Resp(Rel, Com, G, R):
 
 
 Tenses = MyTense(user_input)
-Relative = Tenses['Relative']
-Future = Tenses['Future']
-Past = Tense['Past']
+Future = Tenses['future']
+Past = Tense['past']
 Comp = analyzer.polarity_scores(user_input).get('compound')
 
 Response = Resp(Relative, Comp, Gender, Relation)
