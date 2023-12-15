@@ -119,13 +119,16 @@ else:
     Length = len(user_input.split())
     FuturePR = round(Future/Length * 100, 2)
     PastPR = round(Past/Length * 100, 2) 
+    FutureR = round(Future/Length, 2)
+    PastR = round(Past/Length, 2) 
     st.write("The percentage of future-focused words in the description:", FuturePR, "%")
     st.write("The percentage of past-focused words in the description:", PastPR, "%")
-    Relative = FuturePR - PastPR
-    st.write("The relative future focus of the description:", Relative, "%")
+    RelativePR = FuturePR - PastPR      
+    RelativeR = FutureR - PastR
+    st.write("The relative future focus of the description:", RelativePR, "%")
     Comp = round(analyzer.polarity_scores(user_input).get('compound'), 2)
     st.write("The compound sentiment score of the description:", Comp)
-    Response = Resp(Relative, Comp, Gender, Relation)
+    Response = Resp(RelativeR, Comp, Gender, Relation)
     st.write("The likelihood that this consumer avoids the brand in the future:", Response, "%")
 
 
