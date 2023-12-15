@@ -109,7 +109,7 @@ Tenses = MyTense(user_input)
 Future = Tenses['future']
 Past = Tenses['past'] 
 
-if user_input = "":
+if user_input == "":
     st.write("You have not entered a failure incident description yet:", FuturePR, "%")
 else:
     Length = len(user_input.split())
