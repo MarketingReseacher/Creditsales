@@ -144,8 +144,8 @@ elif Selected_tab == "Brand Avoidance Predictor based on Relative Future Focus a
   Competence = st.slider('Brand competence score', min_value=0, max_value=100, value = 57)
   Sophistication = st.slider('Brand sophistication score', min_value=0, max_value=100, value = 25)
   Ruggedness = st.slider('Brand ruggedness score', min_value=0, max_value=100, value = 49)
-  Sales = st.number_input("Brand annual sales, in dollars (please enter numeric value):")
-  Ad = st.number_input("Brand annual advertising spending, in dollars (please enter numeric value):")
+  Sales = st.number_input("Brand annual sales, in dollars:")
+  Ad = st.number_input("Brand annual advertising spending, in dollars:")
   Marketshare = st.slider('Brand market share', min_value=0, max_value=100, value = 5)
   
   def Resp(Rel, Com, G, R, W, E, C, S, Rug, Sale, A, M):
