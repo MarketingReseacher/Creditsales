@@ -149,7 +149,6 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
   Marketshare = st.slider('Brand market share', min_value=0, max_value=100, value = 5)
   
   def Resp(Rel, Com, G, R, W, E, C, S, Rug, Sale, A, M):
-         
       if G == "Female":
           GenderCoeff = 1
       elif G == "Male":
@@ -157,19 +156,15 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
       elif G == "Unknown":
           GenderCoeff = .21
       else:
-          GenderCoeff = .21
-              
+          GenderCoeff = .21     
       if R == "Yes":
           RelationCoeff =  -.08
       else:
           RelationCoeff = 1  
   
       Answer = (-.11 * Rel) + (1.13 * Relative * .09) + GenderCoeff + RelationCoeff + (.00006 * Com) + (-.01 * W) + (.01 * E) + (-.01 * C) + (-.02 * S) + (.003 * Rug) + (.05 * Sale) + (.01 * M) + (.21 * A) + 1.03
-  
-      Odds = np.exp(Answer)
-      
+      Odds = np.exp(Answer)      
       Prob = Odds/(1+Odds) 
-  
       Response = round(Prob * 100, 2)
              
       return Response
@@ -195,11 +190,11 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
       st.write("Relative future focus of the description:", Relative, "%")
       Comp = round(analyzer.polarity_scores(user_input).get('compound'), 2)
       st.write("Compound sentiment score of the description:", Comp)
-      if np.isnan(Sales):
+      if Sales == "":
         LnSales = ln(41000 + 1)
       else:
         LnSales = ln(Sales + 1)
-      if np.isnan(Ad):
+      if Ad == "":
         Advertising = .06
       else: 
         Advertising = Ad 
