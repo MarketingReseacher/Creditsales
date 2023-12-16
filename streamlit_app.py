@@ -79,7 +79,7 @@ if Selected_tab == "Temporal feature estimator":
 
   Tenses = MyTense(user_input)
   Future = Tenses['future']
-  Past = Tenses['past'] 
+  Past = Tenses['past']  
   
   st.write("##### Results")
   
