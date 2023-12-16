@@ -120,7 +120,8 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus"
       st.write("Percentage of past-focused words in the description:", PastPR, "%")
       Relative = FuturePR - PastPR      
       st.write("Relative future focus of the description:", Relative, "%")
-      Answer = (-.19 * Relative) - 1.97
+      ScaledRel = (Relative + 100)/2
+      Answer = (-.12 * Relative) + (1.13 * Relative * .1) + 1.46
       Odds = np.exp(Answer)
       Prob = Odds/(1+Odds)
       Response = round(Prob * 100, 2)
@@ -133,31 +134,37 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
   st.write("## Temporal Feature And Brand Likelihood Estimator, with Covariates")
 
   st.write("##### User Input")
+
+  user_input = st.text_input("Brand failure incident description:")
   
   Gender = st.selectbox('Consumer\'s gender:', ["Female", "Male","Unknown", "Unspecified"])
   Relation = st.selectbox('Whether the consumer was the primary victim:', ["Yes", "No"])
+  Warmth = st.slider('Brand warmth score', min_value=0, max_value=100, value = 55)
+  Excitement = st.slider("Brand excitement score, min_value=0, max_value=100, value = 37)
+  Competence = st.slider("Brand competence score, min_value=0, max_value=100, value = 57)
+  Sophistication = st.slider("Brand sophistication score, min_value=0, max_value=100, value = 25)
+  Ruggedness = st.slider("Brand ruggedness score, min_value=0, max_value=100, value = 49)
+  Sales = st.text_input("Brand annual sales, in dollars:")
+  Ad = st.text_input("Brand annual advertising spending, in dollars:")
+  Marketshare = st.slider("Brand market share, min_value=0, max_value=100, value = 5)
   
-  user_input = st.text_input("Brand failure incident description:")
-  
-  def Resp(Rel, Com, G, R):
+  def Resp(Rel, Com, G, R, W, E, C, S, Rug, Sale, A, M):
          
       if G == "Female":
-          GenderCoeff = 0
+          GenderCoeff = 1
       elif G == "Male":
-          GenderCoeff = .02
+          GenderCoeff = .01
       elif G == "Unknown":
           GenderCoeff = .21
       else:
-          GenderCoeff = .18
+          GenderCoeff = .21
               
       if R == "Yes":
-          RelationCoeff =  -.05
+          RelationCoeff =  -.08
       else:
-          RelationCoeff = 0
+          RelationCoeff = 1  
   
-      Cop = .02
-  
-      Answer = (-.19 * Rel) + GenderCoeff + RelationCoeff + (.01 * Com) + (1.14 * Cop) - 2.02
+      Answer = (-.11 * Rel) + (1.13 * Relative * .09) + GenderCoeff + RelationCoeff + (.00006 * Com) + (-.01 * W) + (.01 * E) + (-.01 * C) + (-.02 * S) + (.003 * Rug) + (.05 * Sale) + (.01 * M) + (.21 * A) + 1.03
   
       Odds = np.exp(Answer)
       
@@ -188,13 +195,16 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
       st.write("Relative future focus of the description:", Relative, "%")
       Comp = round(analyzer.polarity_scores(user_input).get('compound'), 2)
       st.write("Compound sentiment score of the description:", Comp)
-      Response = Resp(Relative, Comp, Gender, Relation)
+      if np.isnan(Sales):
+        LnSales = ln(41000 + 1)
+       else:
+        LnSales = ln(Sales + 1)
+      if np.isnan(Ad):
+        Advertising = .06
+       else: 
+        Advertising = Ad 
+      Response = Resp(Relative, Comp, Gender, Relation, Warmth, Excitement, Competence, Sophistication, Ruggedness, LnSales, Advertising, Marketshare)
       st.write("The likelihood that this consumer avoids the brand in the future:", Response, "%")
-
-
-
-
-
 
 
 
