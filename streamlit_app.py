@@ -65,8 +65,8 @@ def MyTense(t):
   return Tenses
 
 
-Selected_tab = st.sidebar.selectbox("Select a tab", ["Temporal feature estimator", "Brand Avoidance Likelihood based on Relative Future Focus", 
-                                                     "Brand Avoidance Likelihood based on Relative Future Focus and Covariates"])
+Selected_tab = st.sidebar.selectbox("Select a tab", ["Temporal feature estimator", "Brand Avoidance Predictor based on Relative Future Focus", 
+                                                     "Brand Avoidance Predictor based on Relative Future Focus and Covariates"])
 
 
 if Selected_tab == "Temporal feature estimator":
@@ -96,9 +96,9 @@ if Selected_tab == "Temporal feature estimator":
       st.write("Relative future focus of the description:", Relative, "%")
 
 
-elif Selected_tab == "Predicting Brand Avoidance Likelihood based on Relative Future Focus":
+elif Selected_tab == "Brand Avoidance Predictor based on Relative Future Focus and Covariates":
 
-  st.write("### Temporal Feature And Brand Likelihood Estimator")
+  st.write("### Brand Avoidance Predictor based on Relative Future Focus and Covariates")
   st.write("##### User Input")
   
   user_input = st.text_input("Brand failure incident description:")
