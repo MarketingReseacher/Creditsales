@@ -65,8 +65,8 @@ def MyTense(t):
   return Tenses
 
 
-Selected_tab = st.sidebar.selectbox("Select a tab", ["Temporal feature estimator", "Brand Avoidance Predictor based on Relative Future Focus", 
-                                                     "Brand Avoidance Predictor based on Relative Future Focus and Covariates"])
+Selected_tab = st.sidebar.selectbox("Select a tab", ["Temporal feature estimator", "Brand Avoidance Predictor based on Future Focus", 
+                                                     "Brand Avoidance Predictor based on Future Focus and Covariates"])
 
 
 if Selected_tab == "Temporal feature estimator":
@@ -93,12 +93,12 @@ if Selected_tab == "Temporal feature estimator":
       st.write("Percentage of future-focused words in the description:", FuturePR, "%")
       st.write("Percentage of past-focused words in the description:", PastPR, "%")
       Relative = FuturePR - PastPR      
-      st.write("Relative future focus of the description:", Relative)
+      st.write("Future focus of the description:", Relative)
 
 
-elif Selected_tab == "Brand Avoidance Predictor based on Relative Future Focus":
+elif Selected_tab == "Brand Avoidance Predictor based on Future Focus":
 
-  st.write("### Brand Avoidance Predictor based on Relative Future Focus")
+  st.write("### Brand Avoidance Predictor based on Future Focus")
   st.write("##### User Input")
   
   user_input = st.text_input("Brand failure incident description:")
@@ -119,7 +119,7 @@ elif Selected_tab == "Brand Avoidance Predictor based on Relative Future Focus":
       st.write("Percentage of future-focused words in the description:", FuturePR, "%")
       st.write("Percentage of past-focused words in the description:", PastPR, "%")
       Relative = FuturePR - PastPR      
-      st.write("Relative future focus of the description:", Relative)
+      st.write("Future focus of the description:", Relative)
       ScaledRel = (Relative + 100)/2
       Answer = (-.11 * Relative) 
       Odds = np.exp(Answer)
@@ -129,9 +129,9 @@ elif Selected_tab == "Brand Avoidance Predictor based on Relative Future Focus":
 
 
 
-elif Selected_tab == "Brand Avoidance Predictor based on Relative Future Focus and Covariates":  
+elif Selected_tab == "Brand Avoidance Predictor based on Future Focus and Covariates":  
 
-  st.write("### Brand Avoidance Predictor based on Relative Future Focus and Covariates")
+  st.write("### Brand Avoidance Predictor based on Future Focus and Covariates")
 
   st.write("##### User Input")
 
@@ -187,7 +187,7 @@ elif Selected_tab == "Brand Avoidance Predictor based on Relative Future Focus a
       st.write("Percentage of future-focused words in the description:", FuturePR, "%")
       st.write("Percentage of past-focused words in the description:", PastPR, "%")
       Relative = FuturePR - PastPR      
-      st.write("Relative future focus of the description:", Relative)
+      st.write("Future focus of the description:", Relative)
       Comp = round(analyzer.polarity_scores(user_input).get('compound'), 2)
       st.write("Compound sentiment score of the description:", Comp)
       if Sales == 0:
