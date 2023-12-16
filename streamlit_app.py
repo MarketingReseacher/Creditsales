@@ -190,11 +190,11 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
       st.write("Relative future focus of the description:", Relative, "%")
       Comp = round(analyzer.polarity_scores(user_input).get('compound'), 2)
       st.write("Compound sentiment score of the description:", Comp)
-      if np.isnan(Sales):
+      if Sales == 0:
         LnSales = 10.32
       else:
         LnSales = ln(Sales + 1)
-      if np.isnan(Ad):
+      if Ad == 0:
         Advertising = .06
       else: 
         Advertising = Ad 
