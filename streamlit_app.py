@@ -10,6 +10,56 @@ from nltk import word_tokenize
 import contractions
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
+PastDic = ['past', 'previously', 'previous', 'earlier', 'historically', 'formerly',  'history', 'before', 'prior', 'back', 
+             'retroactively', 'priorly', 'hitherto', 'anteriorly', 'yesterday', 'already',  'precedingly', 'afore', 'fore', 'yesteryear', 'antecedently', 
+             'was', 'were', 'wasnt', 'werent', 'been', 'hindsight', 'rearview', 'aforetime', 'heretofore', 'yore', 'ago', 'beforehand', 'since', 'then']
+  
+FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime', "everyday", "anytime", 'tomorrow', 'imminently',  'hereafter', 'hereon', 
+               'henceforward', 'longrun', 'longterm', 'forthcoming', 'upcoming', 'oncoming', 'incoming', 'impending', 'foreseeable',
+                'will', 'shall', 'wont', 'might',  'may', 
+                'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']  
+def MyTense(t):         
+  Textclean = t.lower() 
+  def ExpandContractions(text):
+    Expanded = contractions.fix(text)
+    return Expanded
+             
+  Textclean = ExpandContractions(Textclean)
+  
+  def RemoveNonAscii(text):
+    return "".join(w for w in text if ord(w) < 128) 
+      
+  Textclean = RemoveNonAscii(Textclean)
+                 
+  def POS(text):
+    tokens = nltk.word_tokenize(text)
+    tagged = nltk.pos_tag(tokens)
+                     
+    past = []
+    future = []
+    previous = ""
+    beforeprevious = ""
+
+    for item in tagged:
+      if (item[0] in PastDic) or (item[1] in ["VBD", "VBN"]) or (item[1] == "VBG" and previous == "been" and beforeprevious == "had") or (item[1] == "VBG" and previous in ["was", "were", "wasnt", "werent"]) or (item[1] == "VBG" and previous == "not" and beforeprevious in ["was", "were", "wasnt", "werent"]):
+        past.append(item[0])
+      elif (item[0] in FutureDic) or (item[1] in ["VB", "VBZ", "VBP"] and previous in ["will", 'shall', 'wont', 'may', 'might', "would"]) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "not" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might']) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "to" and beforeprevious == "going") or (item[1] == "VBG" and previous == "be" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might', "not"]): 
+        future.append(item[0])  
+      else:
+        pass
+                         
+    beforeprevious = previous 
+    previous = item[0]
+    Future = len(future)
+    Past = len(past)
+    response = {"future" : Future, "past": Past}
+                     
+    return response
+             
+    Tenses = POS(Textclean)
+             
+    return Tenses
+
 
 Selected_tab = st.sidebar.selectbox("Select a tab", ["Temporal feature estimator", "Brand Avoidance Likelihood based on Relative Future Focus", 
                                                      "Brand Avoidance Likelihood based on Relative Future Focus and Covariates"])
@@ -22,61 +72,6 @@ if Selected_tab == "Temporal feature estimator":
   st.write("##### User Input")
   
   user_input = st.text_input("Brand failure incident description:")
-  
-  PastDic = ['past', 'previously', 'previous', 'earlier', 'historically', 'formerly',  'history', 'before', 'prior', 'back', 
-             'retroactively', 'priorly', 'hitherto', 'anteriorly', 'yesterday', 'already',  'precedingly', 'afore', 'fore', 'yesteryear', 'antecedently', 
-             'was', 'were', 'wasnt', 'werent', 'been', 'hindsight', 'rearview', 'aforetime', 'heretofore', 'yore', 'ago', 'beforehand', 'since', 'then']
-  
-  FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime', "everyday", "anytime", 'tomorrow', 'imminently',  'hereafter', 'hereon', 
-               'henceforward', 'longrun', 'longterm', 'forthcoming', 'upcoming', 'oncoming', 'incoming', 'impending', 'foreseeable',
-                'will', 'shall', 'wont', 'might',  'may', 
-                'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']             
-  def MyTense(t):
-                 
-      Textclean = t.lower() 
-                 
-      def ExpandContractions(text):
-          Expanded = contractions.fix(text)
-          return Expanded
-             
-      Textclean = ExpandContractions(Textclean)
-  
-      def RemoveNonAscii(text):
-          return "".join(w for w in text if ord(w) < 128) 
-      
-      Textclean = RemoveNonAscii(Textclean)
-                 
-      def POS(text):
-                 
-          tokens = nltk.word_tokenize(text)
-          tagged = nltk.pos_tag(tokens)
-                     
-          past = []
-          future = []
-          previous = ""
-          beforeprevious = ""
-                     
-          for item in tagged:
-              if (item[0] in PastDic) or (item[1] in ["VBD", "VBN"]) or (item[1] == "VBG" and previous == "been" and beforeprevious == "had") or (item[1] == "VBG" and previous in ["was", "were", "wasnt", "werent"]) or (item[1] == "VBG" and previous == "not" and beforeprevious in ["was", "were", "wasnt", "werent"]):
-                  past.append(item[0])
-              elif (item[0] in FutureDic) or (item[1] in ["VB", "VBZ", "VBP"] and previous in ["will", 'shall', 'wont', 'may', 'might', "would"]) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "not" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might']) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "to" and beforeprevious == "going") or (item[1] == "VBG" and previous == "be" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might', "not"]): 
-                  future.append(item[0])  
-              else:
-                  pass
-                         
-              beforeprevious = previous 
-              previous = item[0]
-  
-          Future = len(future)
-          Past = len(past)
-  
-          response = {"future" : Future, "past": Past}
-                     
-          return response
-             
-      Tenses = POS(Textclean)
-             
-      return Tenses
 
   Tenses = MyTense(user_input)
   Future = Tenses['future']
@@ -102,64 +97,6 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus"
   
   user_input = st.text_input("Brand failure incident description:")
   
-  PastDic = ['past', 'previously', 'previous', 'earlier', 'historically', 'formerly',  'history', 'before', 'prior', 'back', 
-             'retroactively', 'priorly', 'hitherto', 'anteriorly', 'yesterday', 'already',  'precedingly', 'afore', 'fore', 'yesteryear', 'antecedently', 
-             'was', 'were', 'wasnt', 'werent', 'been', 'hindsight', 'rearview', 'aforetime', 'heretofore', 'yore', 'ago', 'beforehand', 'since', 'then']
-  
-  
-  FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime', "everyday", "anytime", 'tomorrow', 'imminently',  'hereafter', 'hereon', 
-               'henceforward', 'longrun', 'longterm', 'forthcoming', 'upcoming', 'oncoming', 'incoming', 'impending', 'foreseeable',
-                'will', 'shall', 'wont', 'might',  'may', 
-                'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']
-  
-             
-  def MyTense(t):
-                 
-      Textclean = t.lower() 
-                 
-      def ExpandContractions(text):
-          Expanded = contractions.fix(text)
-          return Expanded
-             
-      Textclean = ExpandContractions(Textclean)
-  
-      def RemoveNonAscii(text):
-          return "".join(w for w in text if ord(w) < 128) 
-      
-      Textclean = RemoveNonAscii(Textclean)
-                 
-      def POS(text):
-                 
-          tokens = nltk.word_tokenize(text)
-          tagged = nltk.pos_tag(tokens)
-                     
-          past = []
-          future = []
-          previous = ""
-          beforeprevious = ""
-                     
-          for item in tagged:
-              if (item[0] in PastDic) or (item[1] in ["VBD", "VBN"]) or (item[1] == "VBG" and previous == "been" and beforeprevious == "had") or (item[1] == "VBG" and previous in ["was", "were", "wasnt", "werent"]) or (item[1] == "VBG" and previous == "not" and beforeprevious in ["was", "were", "wasnt", "werent"]):
-                  past.append(item[0])
-              elif (item[0] in FutureDic) or (item[1] in ["VB", "VBZ", "VBP"] and previous in ["will", 'shall', 'wont', 'may', 'might', "would"]) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "not" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might']) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "to" and beforeprevious == "going") or (item[1] == "VBG" and previous == "be" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might', "not"]): 
-                  future.append(item[0])  
-              else:
-                  pass
-                         
-              beforeprevious = previous 
-              previous = item[0]
-  
-          Future = len(future)
-          Past = len(past)
-  
-          response = {"future" : Future, "past": Past}
-                     
-          return response
-             
-      Tenses = POS(Textclean)
-             
-      return Tenses
-
   Tenses = MyTense(user_input)
   Future = Tenses['future']
   Past = Tenses['past'] 
@@ -185,7 +122,6 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus"
 
 
 
-
 elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus and Covariates":  
 
   st.write("# Temporal Feature And Brand Likelihood Estimator")
@@ -196,66 +132,6 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
   Relation = st.selectbox('Whether the consumer was the primary victim:', ["Yes", "No"])
   
   user_input = st.text_input("Brand failure incident description:")
-  
-  PastDic = ['past', 'previously', 'previous', 'earlier', 'historically', 'formerly',  'history', 'before', 'prior', 'back', 
-             'retroactively', 'priorly', 'hitherto', 'anteriorly', 'yesterday', 'already',  'precedingly', 'afore', 'fore', 'yesteryear', 'antecedently', 
-             'was', 'were', 'wasnt', 'werent', 'been', 'hindsight', 'rearview', 'aforetime', 'heretofore', 'yore', 'ago', 'beforehand', 'since', 'then']
-  
-  
-  FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime', "everyday", "anytime", 'tomorrow', 'imminently',  'hereafter', 'hereon', 
-               'henceforward', 'longrun', 'longterm', 'forthcoming', 'upcoming', 'oncoming', 'incoming', 'impending', 'foreseeable',
-                'will', 'shall', 'wont', 'might',  'may', 
-                'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']
-  
-  analyzer = SentimentIntensityAnalyzer()
-  
-             
-  def MyTense(t):
-                 
-      Textclean = t.lower() 
-                 
-      def ExpandContractions(text):
-          Expanded = contractions.fix(text)
-          return Expanded
-             
-      Textclean = ExpandContractions(Textclean)
-  
-      def RemoveNonAscii(text):
-          return "".join(w for w in text if ord(w) < 128) 
-      
-      Textclean = RemoveNonAscii(Textclean)
-                 
-      def POS(text):
-                 
-          tokens = nltk.word_tokenize(text)
-          tagged = nltk.pos_tag(tokens)
-                     
-          past = []
-          future = []
-          previous = ""
-          beforeprevious = ""
-                     
-          for item in tagged:
-              if (item[0] in PastDic) or (item[1] in ["VBD", "VBN"]) or (item[1] == "VBG" and previous == "been" and beforeprevious == "had") or (item[1] == "VBG" and previous in ["was", "were", "wasnt", "werent"]) or (item[1] == "VBG" and previous == "not" and beforeprevious in ["was", "were", "wasnt", "werent"]):
-                  past.append(item[0])
-              elif (item[0] in FutureDic) or (item[1] in ["VB", "VBZ", "VBP"] and previous in ["will", 'shall', 'wont', 'may', 'might', "would"]) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "not" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might']) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "to" and beforeprevious == "going") or (item[1] == "VBG" and previous == "be" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might', "not"]): 
-                  future.append(item[0])  
-              else:
-                  pass
-                         
-              beforeprevious = previous 
-              previous = item[0]
-  
-          Future = len(future)
-          Past = len(past)
-  
-          response = {"future" : Future, "past": Past}
-                     
-          return response
-             
-      Tenses = POS(Textclean)
-             
-      return Tenses
   
   def Resp(Rel, Com, G, R):
          
