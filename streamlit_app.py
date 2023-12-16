@@ -140,13 +140,13 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
   Gender = st.selectbox('Consumer\'s gender:', ["Female", "Male","Unknown", "Unspecified"])
   Relation = st.selectbox('Whether the consumer was the primary victim:', ["Yes", "No"])
   Warmth = st.slider('Brand warmth score', min_value=0, max_value=100, value = 55)
-  Excitement = st.slider("Brand excitement score, min_value=0, max_value=100, value = 37)
-  Competence = st.slider("Brand competence score, min_value=0, max_value=100, value = 57)
-  Sophistication = st.slider("Brand sophistication score, min_value=0, max_value=100, value = 25)
-  Ruggedness = st.slider("Brand ruggedness score, min_value=0, max_value=100, value = 49)
+  Excitement = st.slider('Brand excitement score', min_value=0, max_value=100, value = 37)
+  Competence = st.slider('Brand competence score', min_value=0, max_value=100, value = 57)
+  Sophistication = st.slider('Brand sophistication score', min_value=0, max_value=100, value = 25)
+  Ruggedness = st.slider('Brand ruggedness score', min_value=0, max_value=100, value = 49)
   Sales = st.text_input("Brand annual sales, in dollars:")
   Ad = st.text_input("Brand annual advertising spending, in dollars:")
-  Marketshare = st.slider("Brand market share, min_value=0, max_value=100, value = 5)
+  Marketshare = st.slider('Brand market share', min_value=0, max_value=100, value = 5)
   
   def Resp(Rel, Com, G, R, W, E, C, S, Rug, Sale, A, M):
          
