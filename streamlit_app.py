@@ -1,3 +1,4 @@
+# Import necessary packages
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -10,6 +11,8 @@ from nltk import word_tokenize
 import contractions
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
+
+# Define dictionaries
 PastDic = ['past', 'previously', 'previous', 'earlier', 'historically', 'formerly',  'history', 'before', 'prior', 'back', 
              'retroactively', 'priorly', 'hitherto', 'anteriorly', 'yesterday', 'already',  'precedingly', 'afore', 'fore', 'yesteryear', 'antecedently', 
              'was', 'were', 'wasnt', 'werent', 'been', 'hindsight', 'rearview', 'aforetime', 'heretofore', 'yore', 'ago', 'beforehand', 'since', 'then']
@@ -18,12 +21,9 @@ FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime',
                'henceforward', 'longrun', 'longterm', 'forthcoming', 'upcoming', 'oncoming', 'incoming', 'impending', 'foreseeable',
                 'will', 'shall', 'wont', 'might',  'may', 'forward', 'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']  
 
-analyzer = SentimentIntensityAnalyzer()
-
+# Define function that calculates temporal features 
 def MyTense(t):  
-  
   Textclean = t.lower() 
-  
   def ExpandContractions(text):
     Expanded = contractions.fix(text)
     return Expanded
@@ -64,27 +64,32 @@ def MyTense(t):
   
   return Tenses
 
+# Define sentiment analyzer function
+analyzer = SentimentIntensityAnalyzer()
 
+
+# Add a selectbox for tab selection
 Selected_tab = st.sidebar.selectbox("Select a tab", ["Temporal feature estimator", "Brand Avoidance Predictor based on Future Focus", 
                                                      "Brand Avoidance Predictor based on Future Focus and Covariates"])
 
-
+# Tab 1
 if Selected_tab == "Temporal feature estimator":
 
   st.write("### Temporal Feature Estimator")
-  
   st.write("##### User Input")
-  
+
+  # Take text entry as input 
   user_input = st.text_input("Brand failure incident description:")
 
+  # Calculate temporal features using the MyTense function
   Tenses = MyTense(user_input)
   Future = Tenses['future']
   Past = Tenses['past']  
   
   st.write("##### Results")
-  
   Length = len(user_input.split())
-  
+
+  # Display results only after the user inputs non-empty values fot the incident description
   if Length == 0:
       st.write("You have not entered a failure incident description yet.")
   else:
@@ -96,11 +101,13 @@ if Selected_tab == "Temporal feature estimator":
       st.write("Future focus of the description:", Relative)
 
 
+# Tab 2
 elif Selected_tab == "Brand Avoidance Predictor based on Future Focus":
 
   
   st.write("### Brand Avoidance Predictor based on Future Focus")
   st.write("##### User Input")
+
   
   user_input = st.text_input("Brand failure incident description:")
   
@@ -129,7 +136,7 @@ elif Selected_tab == "Brand Avoidance Predictor based on Future Focus":
       st.write("The likelihood that this consumer avoids the brand in the future:", Response, "%")
 
 
-
+# Tab 3
 elif Selected_tab == "Brand Avoidance Predictor based on Future Focus and Covariates":  
 
   st.write("### Brand Avoidance Predictor based on Future Focus and Covariates")
@@ -189,6 +196,7 @@ elif Selected_tab == "Brand Avoidance Predictor based on Future Focus and Covari
       st.write("Percentage of past-focused words in the description:", PastPR, "%")
       Relative = FuturePR - PastPR      
       st.write("Future focus of the description:", Relative)
+      ScaledRel = (Relative + 100)/2
       Comp = round(analyzer.polarity_scores(user_input).get('compound'), 2)
       st.write("Compound sentiment score of the description:", Comp)
       if Sales == 0:
@@ -199,7 +207,7 @@ elif Selected_tab == "Brand Avoidance Predictor based on Future Focus and Covari
         Advertising = .06
       else: 
         Advertising = Ad 
-      Response = Resp(Relative, Comp, Gender, Relation, Warmth, Excitement, Competence, Sophistication, Ruggedness, LnSales, Advertising, Marketshare)
+      Response = Resp(ScaledRel, Comp, Gender, Relation, Warmth, Excitement, Competence, Sophistication, Ruggedness, LnSales, Advertising, Marketshare)
       st.write("The likelihood that this consumer avoids the brand in the future:", Response, "%")
 
 
