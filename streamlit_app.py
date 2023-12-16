@@ -67,7 +67,6 @@ def MyTense(t):
 # Define sentiment analyzer function
 analyzer = SentimentIntensityAnalyzer()
 
-
 # Add a selectbox for tab selection
 Selected_tab = st.sidebar.selectbox("Select a tab", ["Temporal feature estimator", "Brand Avoidance Predictor based on Future Focus", 
                                                      "Brand Avoidance Predictor based on Future Focus and Covariates"])
@@ -140,11 +139,11 @@ elif Selected_tab == "Brand Avoidance Predictor based on Future Focus":
 elif Selected_tab == "Brand Avoidance Predictor based on Future Focus and Covariates":  
 
   st.write("### Brand Avoidance Predictor based on Future Focus and Covariates")
-
   st.write("##### User Input")
 
   user_input = st.text_input("Brand failure incident description:")
-  
+
+  # Take covariate values as input 
   Gender = st.selectbox('Consumer\'s gender:', ["Female", "Male","Unknown", "Unspecified"])
   Relation = st.selectbox('Whether the consumer was the primary victim:', ["Yes", "No"])
   Warmth = st.slider('Brand warmth score', min_value=0, max_value=100, value = 55)
@@ -155,7 +154,8 @@ elif Selected_tab == "Brand Avoidance Predictor based on Future Focus and Covari
   Sales = st.number_input("Brand annual sales, in dollars:")
   Ad = st.number_input("Brand annual advertising spending, in dollars:")
   Marketshare = st.slider('Brand market share', min_value=0, max_value=100, value = 5)
-  
+
+  # Calculate likelihood using values of covariates
   def Resp(Rel, Com, G, R, W, E, C, S, Rug, Sale, A, M):
       if G == "Female":
           GenderCoeff = 1
@@ -176,9 +176,7 @@ elif Selected_tab == "Brand Avoidance Predictor based on Future Focus and Covari
       Response = round(Prob * 100, 2)
              
       return Response
-  
-  
-  
+
   Tenses = MyTense(user_input)
   Future = Tenses['future']
   Past = Tenses['past'] 
@@ -209,11 +207,6 @@ elif Selected_tab == "Brand Avoidance Predictor based on Future Focus and Covari
         Advertising = Ad 
       Response = Resp(ScaledRel, Comp, Gender, Relation, Warmth, Excitement, Competence, Sophistication, Ruggedness, LnSales, Advertising, Marketshare)
       st.write("The likelihood that this consumer avoids the brand in the future:", Response, "%")
-
-
-
-
-
 
 
 
