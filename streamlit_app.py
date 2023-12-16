@@ -197,11 +197,11 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
       st.write("Compound sentiment score of the description:", Comp)
       if np.isnan(Sales):
         LnSales = ln(41000 + 1)
-       else:
+      else:
         LnSales = ln(Sales + 1)
       if np.isnan(Ad):
         Advertising = .06
-       else: 
+      else: 
         Advertising = Ad 
       Response = Resp(Relative, Comp, Gender, Relation, Warmth, Excitement, Competence, Sophistication, Ruggedness, LnSales, Advertising, Marketshare)
       st.write("The likelihood that this consumer avoids the brand in the future:", Response, "%")
