@@ -21,16 +21,12 @@ Relation = st.selectbox('Whether the consumer was the primary victim:', ["Yes", 
 user_input = st.text_input("Brand failure incident description:")
 
 PastDic = ['past', 'previously', 'previous', 'earlier', 'historically', 'formerly',  'history', 'before', 'prior', 'back', 
-           'retroactively', 'priorly', 'hitherto', 'anteriorly', 'erstwhile', 'yesterday', 'already', 
-           'precedingly', 'afore', 'fore', 'erewhile', 'yesteryear', 'precedently', 'antecedently', 
-           'was', 'were', 'wasnt', 'werent', 'been', 'hindsight', 'rearview', 'aforetime', 'heretofore', 'foretime', 
-           'foregoing', 'yore', 'ago', 'beforehand', 'since', 'then', 'temporary']
+           'retroactively', 'priorly', 'hitherto', 'anteriorly', 'yesterday', 'already',  'precedingly', 'afore', 'fore', 'yesteryear', 'antecedently', 
+           'was', 'were', 'wasnt', 'werent', 'been', 'hindsight', 'rearview', 'aforetime', 'heretofore', 'yore', 'ago', 'beforehand', 'since', 'then']
 
 
-FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime', "everyday", "anytime", 'tomorrow',  
-             'imminently',  'hereafter', 'hereon', 'henceforward', 
-             'longrun', 'longterm', 'forthcoming', 'upcoming', 'oncoming', 'incoming', 'impending', 'foreseeable', 
-             'will', 'shall', 'wont', 'might',  'may', 
+FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime', "everyday", "anytime", 'tomorrow', 'imminently',  'hereafter', 'hereon', 
+             'henceforward', 'longrun', 'longterm', 'forthcoming', 'upcoming', 'oncoming', 'incoming', 'impending', foreseeable', 'will', 'shall', 'wont', 'might',  'may', 
              'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']
 
 analyzer = SentimentIntensityAnalyzer()
