@@ -16,8 +16,7 @@ PastDic = ['past', 'previously', 'previous', 'earlier', 'historically', 'formerl
   
 FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime', "everyday", "anytime", 'tomorrow', 'imminently',  'hereafter', 'hereon', 
                'henceforward', 'longrun', 'longterm', 'forthcoming', 'upcoming', 'oncoming', 'incoming', 'impending', 'foreseeable',
-                'will', 'shall', 'wont', 'might',  'may', 
-                'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']  
+                'will', 'shall', 'wont', 'might',  'may', 'forward', 'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']  
 
 
 def MyTense(t):  
