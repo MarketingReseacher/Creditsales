@@ -18,7 +18,10 @@ FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime',
                'henceforward', 'longrun', 'longterm', 'forthcoming', 'upcoming', 'oncoming', 'incoming', 'impending', 'foreseeable',
                 'will', 'shall', 'wont', 'might',  'may', 
                 'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']  
-def MyTense(t):         
+
+
+def MyTense(t):  
+  
   Textclean = t.lower() 
   
   def ExpandContractions(text):
@@ -49,15 +52,16 @@ def MyTense(t):
       else:
         pass
                          
-    beforeprevious = previous 
-    previous = item[0]
+      beforeprevious = previous 
+      previous = item[0]
     Future = len(future)
     Past = len(past)
     response = {"future" : Future, "past": Past}
                      
     return response
-             
-  Tenses = POS(Textclean)    
+    
+  Tenses = POS(Textclean)  
+  
   return Tenses
 
 
