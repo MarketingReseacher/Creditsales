@@ -128,7 +128,7 @@ elif Selected_tab == "Brand Avoidance Predictor based on Future Focus":
       Relative = FuturePR - PastPR      
       st.write("Future focus of the description:", Relative)
       ScaledRel = (Relative + 100)/2
-      Answer = (-.11 * Relative) 
+      Answer = (-.11 * ScaledRel) 
       Odds = np.exp(Answer)
       Prob = Odds/(1+Odds)
       Response = round(Prob * 100, 2)
