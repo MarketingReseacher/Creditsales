@@ -74,7 +74,7 @@ Selected_tab = st.sidebar.selectbox("Select a tab", ["Temporal feature estimator
 # Tab 1
 if Selected_tab == "Temporal feature estimator":
 
-  st.write("### Temporal Feature Estimator")
+  st.write("#### Temporal Feature Estimator")
   st.write("##### User Input")
 
   # Take text entry as input 
@@ -104,7 +104,7 @@ if Selected_tab == "Temporal feature estimator":
 elif Selected_tab == "Brand Avoidance Predictor based on Future Focus":
 
   
-  st.write("### Brand Avoidance Predictor based on Future Focus")
+  st.write("#### Brand Avoidance Predictor based on Incident Description's Future Focus")
   st.write("##### User Input")
 
   
@@ -138,7 +138,7 @@ elif Selected_tab == "Brand Avoidance Predictor based on Future Focus":
 # Tab 3
 elif Selected_tab == "Brand Avoidance Predictor based on Future Focus and Covariates":  
 
-  st.write("### Brand Avoidance Predictor based on Future Focus and Covariates")
+  st.write("#### Brand Avoidance Predictor based on Incident Description's Future Focus and Other Covariates")
   st.write("##### User Input")
 
   user_input = st.text_input("Brand failure incident description:")
