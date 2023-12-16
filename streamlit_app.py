@@ -144,8 +144,8 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
   Competence = st.slider('Brand competence score', min_value=0, max_value=100, value = 57)
   Sophistication = st.slider('Brand sophistication score', min_value=0, max_value=100, value = 25)
   Ruggedness = st.slider('Brand ruggedness score', min_value=0, max_value=100, value = 49)
-  Sales = st.text_input("Brand annual sales, in dollars:")
-  Ad = st.text_input("Brand annual advertising spending, in dollars:")
+  Sales = st.number_input("Brand annual sales, in dollars (please enter numeric value):")
+  Ad = st.number_input("Brand annual advertising spending, in dollars (please enter numeric value):")
   Marketshare = st.slider('Brand market share', min_value=0, max_value=100, value = 5)
   
   def Resp(Rel, Com, G, R, W, E, C, S, Rug, Sale, A, M):
@@ -190,11 +190,11 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
       st.write("Relative future focus of the description:", Relative, "%")
       Comp = round(analyzer.polarity_scores(user_input).get('compound'), 2)
       st.write("Compound sentiment score of the description:", Comp)
-      if Sales == "":
-        LnSales = ln(41000 + 1)
+      if np.isnan(Sales):
+        LnSales = 10.32
       else:
         LnSales = ln(Sales + 1)
-      if Ad == "":
+      if np.isnan(Ad):
         Advertising = .06
       else: 
         Advertising = Ad 
