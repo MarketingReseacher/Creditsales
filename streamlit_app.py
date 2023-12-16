@@ -96,9 +96,9 @@ if Selected_tab == "Temporal feature estimator":
       st.write("Relative future focus of the description:", Relative, "%")
 
 
-elif Selected_tab == "Brand Avoidance Predictor based on Relative Future Focus and Covariates":
+elif Selected_tab == "Brand Avoidance Predictor based on Relative Future Focus":
 
-  st.write("### Brand Avoidance Predictor based on Relative Future Focus and Covariates")
+  st.write("### Brand Avoidance Predictor based on Relative Future Focus")
   st.write("##### User Input")
   
   user_input = st.text_input("Brand failure incident description:")
@@ -129,9 +129,9 @@ elif Selected_tab == "Brand Avoidance Predictor based on Relative Future Focus a
 
 
 
-elif Selected_tab == "Predicting Brand Avoidance Likelihood based on Relative Future Focus and Covariates":  
+elif Selected_tab == "Brand Avoidance Predictor based on Relative Future Focus and Covariates":  
 
-  st.write("### Temporal Feature And Brand Likelihood Estimator, with Covariates")
+  st.write("### Brand Avoidance Predictor based on Relative Future Focus and Covariates")
 
   st.write("##### User Input")
 
