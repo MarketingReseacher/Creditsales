@@ -11,13 +11,14 @@ import contractions
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 
-st.title("Temporal Features and Brand Avoidance Likelihood Estimator") 
-
 Selected_tab = st.sidebar.selectbox("Select a tab", ["Temporal feature estimator", "Brand Avoidance Likelihood based on Relative Future Focus", 
                                                      "Brand Avoidance Likelihood based on Relative Future Focus and Covariates"])
 
 
 if Selected_tab == "Temporal feature estimator":
+
+  st.write("# Temporal Feature Estimator")
+  
   st.write("##### User Input")
   
   user_input = st.text_input("Brand failure incident description:")
