@@ -98,6 +98,7 @@ if Selected_tab == "Temporal feature estimator":
 
 elif Selected_tab == "Brand Avoidance Predictor based on Future Focus":
 
+  
   st.write("### Brand Avoidance Predictor based on Future Focus")
   st.write("##### User Input")
   
