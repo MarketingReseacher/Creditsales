@@ -188,6 +188,8 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus"
 
 elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus and Covariates":  
 
+  st.write("# Temporal Feature And Brand Likelihood Estimator")
+
   st.write("##### User Input")
   
   Gender = st.selectbox('Consumer\'s gender:', ["Female", "Male","Unknown", "Unspecified"])
