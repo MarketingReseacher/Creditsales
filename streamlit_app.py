@@ -20,6 +20,7 @@ FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime',
                 'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']  
 def MyTense(t):         
   Textclean = t.lower() 
+  
   def ExpandContractions(text):
     Expanded = contractions.fix(text)
     return Expanded
@@ -56,9 +57,8 @@ def MyTense(t):
                      
     return response
              
-    Tenses = POS(Textclean)
-             
-    return Tenses
+  Tenses = POS(Textclean)    
+  return Tenses
 
 
 Selected_tab = st.sidebar.selectbox("Select a tab", ["Temporal feature estimator", "Brand Avoidance Likelihood based on Relative Future Focus", 
