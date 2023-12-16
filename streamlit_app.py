@@ -121,7 +121,7 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus"
       Relative = FuturePR - PastPR      
       st.write("Relative future focus of the description:", Relative, "%")
       ScaledRel = (Relative + 100)/2
-      Answer = (-.12 * Relative) + (1.13 * Relative * .1) + 1.46
+      Answer = (-.12 * Relative) + 5.46
       Odds = np.exp(Answer)
       Prob = Odds/(1+Odds)
       Response = round(Prob * 100, 2)
@@ -162,7 +162,7 @@ elif Selected_tab == "Brand Avoidance Likelihood based on Relative Future Focus 
       else:
           RelationCoeff = 1  
   
-      Answer = (-.11 * Rel) + (1.13 * Relative * .09) + GenderCoeff + RelationCoeff + (.00006 * Com) + (-.01 * W) + (.01 * E) + (-.01 * C) + (-.02 * S) + (.003 * Rug) + (.05 * Sale) + (.01 * M) + (.21 * A) + 1.03
+      Answer = (-.11 * Rel) + GenderCoeff + RelationCoeff + (.00006 * Com) + (-.01 * W) + (.01 * E) + (-.01 * C) + (-.02 * S) + (.003 * Rug) + (.05 * Sale) + (.01 * M) + (.21 * A) + 4.63
       Odds = np.exp(Answer)      
       Prob = Odds/(1+Odds) 
       Response = round(Prob * 100, 2)
