@@ -41,6 +41,11 @@ def MyTense(t):
         return Expanded
            
     Textclean = ExpandContractions(Textclean)
+
+    def RemoveNonAscii(text):
+        return "".join(w for w in text if ord(w) < 128) 
+    
+    Textclean = RemoveNonAscii(Textclean)
                
     def POS(text):
                
