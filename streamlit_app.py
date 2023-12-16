@@ -18,6 +18,7 @@ FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime',
                'henceforward', 'longrun', 'longterm', 'forthcoming', 'upcoming', 'oncoming', 'incoming', 'impending', 'foreseeable',
                 'will', 'shall', 'wont', 'might',  'may', 'forward', 'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']  
 
+analyzer = SentimentIntensityAnalyzer()
 
 def MyTense(t):  
   
