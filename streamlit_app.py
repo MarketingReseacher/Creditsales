@@ -23,8 +23,8 @@ if Selected_tab == "Credit sales predictor":
     st.write("#### Credit sales Predictor")
     st.write("##### User Input")
 
-    PI = st.slider('Product issues', min_value=0, max_value = 400, value = .28)
-    BO = st.slider('Buyer orientation', min_value= -1, max_value = 1, value = .11)
+    PI = st.slider('Product issues', min_value=0, max_value = 200, value =1)
+    BO = st.slider('Buyer orientation', min_value= -1, max_value = 1, value = 0.11)
     Assets = st.number_input("Assets, in dollars:")
     if len(Assets) == 0:
         Assets =  7298
