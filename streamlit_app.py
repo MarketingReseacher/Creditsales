@@ -4,7 +4,7 @@ import streamlit as st
 
 def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRoa):
     
-    Size = np.ln(Assets + 1)
+    Size = np.log(Assets + 1)
     if Assets == 0:
         Assets = 1
     if Dlc == 0:
