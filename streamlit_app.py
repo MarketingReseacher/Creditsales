@@ -24,7 +24,7 @@ def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRo
     
     return Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP
 
-Selected_tab = st.sidebar.selectbox("Select a tab", ["Credit sales predictor", "Bankruptcy risk predictor"], help = 'Choose "Credit sales predictor" if you want to predict the firm's credit sales based on the number of its product issues, buyer orientation, and other financial covariates. Choose "Bankruptcy risk predictor" if you want to predict the firm's bankruptcy risk based on its credit sales, product issues, buyer orientation, and financial covariates')
+Selected_tab = st.sidebar.selectbox("Select a tab", ["Credit sales predictor", "Bankruptcy risk predictor"], help = "Choose 'Credit sales predictor' if you want to predict the firm\'s credit sales based on the number of its product issues, buyer orientation, and other financial covariates. Choose 'Bankruptcy risk predictor' if you want to predict the firm\'s bankruptcy risk based on its credit sales, product issues, buyer orientation, and financial covariates")
 
 if Selected_tab == "Credit sales predictor":
     st.write("#### Credit sales Predictor")
