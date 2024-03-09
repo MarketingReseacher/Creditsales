@@ -25,9 +25,9 @@ if Selected_tab == "Credit sales predictor":
 
     PI = st.slider('Product issues', min_value=0, max_value = 200, value =1)
     BO = st.slider('Buyer orientation', min_value= -1.00, max_value = 1.00, value = 0.11)
-    Assets = st.number_input("Assets, in dollars:")
+    Assets = st.number_input("Assets, in dollars:", value = 7298)
     if len(str(Assets)) == 0:
-        Assets =  7298
+        Assets = 7298
     AdStock = st.number_input("Advertising stock, in dollars:")
     if len(str(AdStock)) == 0:
         AdStock = 63
