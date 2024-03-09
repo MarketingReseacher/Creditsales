@@ -5,7 +5,7 @@ import math
 
 def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, IRoa):
     
-    Size = ln(Assets + 1)
+    Size = log(Assets + 1)
     Profit = Ib/Assets
     Liquidity = WC/Assets
     Ad = AdStock/Assets
