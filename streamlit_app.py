@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, Roa, IRoa):
+def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, IRoa):
     
     Size = ln(Assets + 1)
     Profit = Ib/Assets
@@ -15,7 +15,7 @@ def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, Roa,
     Roa = Ni/Assets
     RP = Roa - IRoa
     
-    return Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, Roa, RP
+    return Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP
 
 Selected_tab = st.sidebar.selectbox("Select a tab", ["Credit sales predictor", "Bankruptcy risk predictor"])
 
@@ -68,7 +68,7 @@ if Selected_tab == "Credit sales predictor":
     IG = st.slider('Industry growth', min_value= -1.00, max_value = 1.00, value = .03)
     IT = st.slider('Industry turbulence', min_value= -1.00, max_value = 1.00, value = .06)
 
-    Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, Roa, RP = Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, Roa, IRoa)
+    Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP = Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, IRoa)
 
     Creditsales = ((-0.022 * PI) + (0.108 * BO) + (0.098 * PI * BO) + (-0.042 * Ad) + (-0.001 * RD) + (-0.004 * Size) + (-0.041 * Profit) + (0.030 * Liquidity) + (0.006 * Leverage) + (-0.019 * CI) + (0.005 * RE) + (0.000 * RP) + (-0.009 * Concentration) + (0.008 * SG) + (0.006 * ST) + (-0.015 * IC) + (0.002 * IG) + (0.031 * IT)) * 100
 
@@ -125,7 +125,7 @@ elif Selected_tab == "Bankruptcy risk predictor":
     IG = st.slider('Industry growth', min_value= -1.00, max_value = 1.00, value = .03)
     IT = st.slider('Industry turbulence', min_value= -1.00, max_value = 1.00, value = .06)
 
-    Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, Roa, RP = Cov(Assets, ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, ni, Roa, IRoa)
+    Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP = Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, IRoa)
 
     Bankruptcyrisk = (23.597 * Creditsales)  + (-1.344 * PI) + (1.547 * BO) + (5.761 * PI * BO) + (17.652 * Ad) + (1.508 * RD) + (1.153 * Size) + (-2.950 * Profit) + (-1.285 * Liquidity) + (2.957 * Leverage) + (-1.685 * CI) + (-0.314 * RE) + (-0.003 * RP) + (-0.876 * Concentration) + (-2.756 * SG) + (3.485 * ST) + (-0.493 * IC) + (-0.507 * IG) + (-1.189 * IT)
 
