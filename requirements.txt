@@ -1,5 +1,3 @@
 pandas
 numpy
 streamlit
-nltk==3.6.2
-contractions==0.1.73
