@@ -1,195 +1,132 @@
-# Import necessary packages
 import numpy as np
 import pandas as pd
 import streamlit as st
 
-# Define function that calculates Creditsales
-def MyTense(t):  
-  Textclean = t.lower() 
-  def ExpandContractions(text):
-    Expanded = contractions.fix(text)
-    return Expanded
-             
-  Textclean = ExpandContractions(Textclean)
-  
-  def RemoveNonAscii(text):
-    return "".join(w for w in text if ord(w) < 128) 
-      
-  Textclean = RemoveNonAscii(Textclean)
-                 
-  def POS(text):
-    tokens = nltk.word_tokenize(text)
-    tagged = nltk.pos_tag(tokens)
-                     
-    past = []
-    future = []
-    previous = ""
-    beforeprevious = ""
-
-    for item in tagged:
-      if (item[0] in PastDic) or (item[1] in ["VBD", "VBN"]) or (item[1] == "VBG" and previous == "been" and beforeprevious == "had") or (item[1] == "VBG" and previous in ["was", "were", "wasnt", "werent"]) or (item[1] == "VBG" and previous == "not" and beforeprevious in ["was", "were", "wasnt", "werent"]):
-        past.append(item[0])
-      elif (item[0] in FutureDic) or (item[1] in ["VB", "VBZ", "VBP"] and previous in ["will", 'shall', 'wont', 'may', 'might', "would"]) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "not" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might']) or (item[1] in ["VB", "VBZ", "VBP"] and previous == "to" and beforeprevious == "going") or (item[1] == "VBG" and previous == "be" and beforeprevious in ["will", 'shall', 'wont', 'may', 'might', "not"]): 
-        future.append(item[0])  
-      else:
-        pass
-                         
-      beforeprevious = previous 
-      previous = item[0]
-    Future = len(future)
-    Past = len(past)
-    response = {"future" : Future, "past": Past}
-                     
-    return response
+def Cov(Assets, ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, ni, Roa, IRoa):
     
-  Tenses = POS(Textclean)  
-  
-  return Tenses
+    Size = ln(Assets + 1)
+    Profit = ib/Assets
+    Liquidity = WC/Assets
+    Ad = AdStock/Assets
+    RD = RDStock/Assets
+    Leverage = (Dlc + Dltt)/(Dlc + Dltt + MV)
+    CI = PPE/Assets
+    RE = Retained/Assets
+    Roa = ni/Assets
+    RP = Roa - IRoa
+    
+    return Size Profit Liquidity Ad RD Leverage CI RE Roa RP
 
-# Define sentiment analyzer function
-analyzer = SentimentIntensityAnalyzer()
+if Selected_tab == "Credit sales predictor":
+    st.write("#### Credit sales Predictor")
+    st.write("##### User Input")
 
-# Add a selectbox for tab selection
-Selected_tab = st.sidebar.selectbox("Select a tab", ["Temporal feature estimator", "Brand Avoidance Predictor based on Future Focus", 
-                                                     "Brand Avoidance Predictor based on Future Focus and Covariates"])
+    PI = st.slider('Product issues', min_value=0, max_value = 400, value = .28)
+    BO = st.slider('Buyer orientation', min_value= -1, max_value = 1, value = .11)
+    Assets = st.number_input("Assets, in dollars:")
+    if len(Assets) == 0:
+        Assets =  7298
+    AdStock = st.number_input("Advertising stock, in dollars:")
+    if len(AdStock) == 0:
+        AdStock = 63
+    RDStock = st.number_input("R&D stock, in dollars:")
+    if len(RDStock) == 0:
+        RDStock = 680
+    ib = st.number_input("Income before extraordinary items, in dollars:")
+    if len(ib) == 0:
+        ib = 394
+    WC = st.number_input("Working capital, in dollars:")
+    if len(WC) == 0:
+        WC = 921
+    Dlc = st.number_input("Debt in current liabilities, in dollars:")
+    if len(Dlc) == 0:
+        Dlc = 330   
+    Dltt = st.number_input("Long-term debt, in dollars:")
+    if len(Dltt) == 0:
+        Dltt = 1487
+    MV = st.number_input("Market value, in dollars:")
+    if len(MV) == 0:
+        MV = 8214
+    PPE = st.number_input("Propery, plant, and equipment, in dollars:")
+    if len(PPE) == 0:
+        PPE = 2457
+    Retained = st.number_input("Retained earnings, in dollars:")
+    if len(Retained) == 0:
+        Retained = 2783
+    ni = st.number_input("Net income, in dollars:")
+    if len(ni) == 0:
+        ni = 398
+    IRoa = st.number_input("Average industry ROA, in dollars:")
+    if len(IRoa) == 0:
+        IRoa = -3
+    Concentration = st.slider('Segment concentration', min_value= 0, max_value = 1, value = .14)
+    SG = st.slider('Sales growth', min_value= -1, max_value = 1, value = .07)
+    ST = st.slider('Sales turbulence', min_value= -1, max_value = 1, value = .04)
+    IC = st.slider('Industry competition', min_value= 0, max_value = 1, value = .28)
+    IG = st.slider('Industry growth', min_value= -1, max_value = 1, value = .03)
+    IT = st.slider('Industry turbulence', min_value= -1, max_value = 1, value = .06)
 
-# Tab 1
-if Selected_tab == "Temporal feature estimator":
+    Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, Roa, RP = Cov(Assets, ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, ni, Roa, IRoa)
 
-  st.write("#### Temporal Feature Estimator")
-  st.write("##### User Input")
+    Creditsales = ((-0.022 * PI) + (0.108 * BO) + (0.098 * PI * BO) + (-0.042 * Ad) + (-0.001 * RD) + (-0.004 * Size) + (-0.041 * Profit) + (0.030 * Liquidity) + (0.006 * Leverage) + (-0.019 * CI) + (0.005 * RE) + (0.000 * RP) + (-0.009 * Concentration) + (0.008 * SG) + (0.006 * ST) + (-0.015 * IC) + (0.002 * IG) + (0.031 * IT)) * 100
 
-  # Take text entry as input 
-  user_input = st.text_input("Brand failure incident description:")
-
-  # Calculate temporal features using the MyTense function
-  Tenses = MyTense(user_input)
-  Future = Tenses['future']
-  Past = Tenses['past']  
-  
-  st.write("##### Results")
-  Length = len(user_input.split())
-
-  # Display results only after the user inputs non-empty values fot the incident description
-  if Length == 0:
-      st.write("You have not entered a failure incident description yet.")
-  else:
-      FuturePR = round(Future/Length * 100, 2)
-      PastPR = round(Past/Length * 100, 2) 
-      st.write("Percentage of future-focused words in the description:", FuturePR, "%")
-      st.write("Percentage of past-focused words in the description:", PastPR, "%")
-      Relative = FuturePR - PastPR      
-      st.write("Future focus of the description:", Relative)
-
-
-# Tab 2
-elif Selected_tab == "Brand Avoidance Predictor based on Future Focus":
-
-  
-  st.write("#### Brand Avoidance Predictor based on Incident Description's Future Focus")
-  st.write("##### User Input")
-
-  
-  user_input = st.text_input("Brand failure incident description:")
-  
-  Tenses = MyTense(user_input)
-  Future = Tenses['future']
-  Past = Tenses['past'] 
-  
-  st.write("##### Results")
-  
-  Length = len(user_input.split())
-  
-  if Length == 0:
-      st.write("You have not entered a failure incident description yet.")
-  else:
-      FuturePR = round(Future/Length * 100, 2)
-      PastPR = round(Past/Length * 100, 2) 
-      st.write("Percentage of future-focused words in the description:", FuturePR, "%")
-      st.write("Percentage of past-focused words in the description:", PastPR, "%")
-      Relative = FuturePR - PastPR      
-      st.write("Future focus of the description:", Relative)
-      ScaledRel = (Relative + 100)/2
-      Answer = (-.11 * Relative) 
-      Odds = np.exp(Answer)
-      Prob = Odds/(1+Odds)
-      Response = round(Prob * 100, 2)
-      st.write("The likelihood that this consumer avoids the brand in the future:", Response, "%")
+    st.write("Credit sales:", Creditsales, "%")
 
 
-# Tab 3
-elif Selected_tab == "Brand Avoidance Predictor based on Future Focus and Covariates":  
+elif Selected_tab == "Bankruptcy risk predictor":
+    st.write("#### Bankruptcy risk Predictor")
+    st.write("##### User Input")
 
-  st.write("#### Brand Avoidance Predictor based on Incident Description's Future Focus and Other Covariates")
-  st.write("##### User Input")
+    Creditsales = st.slider('Credit sales', min_value=0, max_value = 1, value = .157)
+    PI = st.slider('Product issues', min_value=0, max_value = 400, value = .28)
+    BO = st.slider('Buyer orientation', min_value= -1, max_value = 1, value = .11)
+    Assets = st.number_input("Assets, in dollars:")
+    if len(Assets) == 0:
+        Assets =  7298
+    AdStock = st.number_input("Advertising stock, in dollars:")
+    if len(AdStock) == 0:
+        AdStock = 63
+    RDStock = st.number_input("R&D stock, in dollars:")
+    if len(RDStock) == 0:
+        RDStock = 680
+    ib = st.number_input("Income before extraordinary items, in dollars:")
+    if len(ib) == 0:
+        ib = 394
+    WC = st.number_input("Working capital, in dollars:")
+    if len(WC) == 0:
+        WC = 921
+    Dlc = st.number_input("Debt in current liabilities, in dollars:")
+    if len(Dlc) == 0:
+        Dlc = 330   
+    Dltt = st.number_input("Long-term debt, in dollars:")
+    if len(Dltt) == 0:
+        Dltt = 1487
+    MV = st.number_input("Market value, in dollars:")
+    if len(MV) == 0:
+        MV = 8214
+    PPE = st.number_input("Propery, plant, and equipment, in dollars:")
+    if len(PPE) == 0:
+        PPE = 2457
+    Retained = st.number_input("Retained earnings, in dollars:")
+    if len(Retained) == 0:
+        Retained = 2783
+    ni = st.number_input("Net income, in dollars:")
+    if len(ni) == 0:
+        ni = 398
+    IRoa = st.number_input("Average industry ROA, in dollars:")
+    if len(IRoa) == 0:
+        IRoa = -3
+    Concentration = st.slider('Segment concentration', min_value= 0, max_value = 1, value = .14)
+    SG = st.slider('Sales growth', min_value= -1, max_value = 1, value = .07)
+    ST = st.slider('Sales turbulence', min_value= -1, max_value = 1, value = .04)
+    IC = st.slider('Industry competition', min_value= 0, max_value = 1, value = .28)
+    IG = st.slider('Industry growth', min_value= -1, max_value = 1, value = .03)
+    IT = st.slider('Industry turbulence', min_value= -1, max_value = 1, value = .06)
 
-  user_input = st.text_input("Brand failure incident description:")
+    Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, Roa, RP = Cov(Assets, ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, ni, Roa, IRoa)
 
-  # Take covariate values as input 
-  Gender = st.selectbox('Consumer\'s gender:', ["Female", "Male","Unknown", "Unspecified"])
-  Relation = st.selectbox('Whether the consumer was the primary victim:', ["Yes", "No"])
-  Warmth = st.slider('Brand warmth score', min_value=0, max_value=100, value = 55)
-  Excitement = st.slider('Brand excitement score', min_value=0, max_value=100, value = 37)
-  Competence = st.slider('Brand competence score', min_value=0, max_value=100, value = 57)
-  Sophistication = st.slider('Brand sophistication score', min_value=0, max_value=100, value = 25)
-  Ruggedness = st.slider('Brand ruggedness score', min_value=0, max_value=100, value = 49)
-  Sales = st.number_input("Brand annual sales, in dollars:")
-  Ad = st.number_input("Brand annual advertising spending, in dollars:")
-  Marketshare = st.slider('Brand market share', min_value=0, max_value=100, value = 5)
+    Bankruptcyrisk = (23.597 * Creditsales)  + (-1.344 * PI) + (1.547 * BO) + (5.761 * PI * BO) + (17.652 * Ad) + (1.508 * RD) + (1.153 * Size) + (-2.950 * Profit) + (-1.285 * Liquidity) + (2.957 * Leverage) + (-1.685 * CI) + (-0.314 * RE) + (-0.003 * RP) + (-0.876 * Concentration) + (-2.756 * SG) + (3.485 * ST) + (-0.493 * IC) + (-0.507 * IG) + (-1.189 * IT)
 
-  # Calculate likelihood using values of covariates
-  def Resp(Rel, Com, G, R, W, E, C, S, Rug, Sale, A, M):
-      if G == "Female":
-          GenderCoeff = 1
-      elif G == "Male":
-          GenderCoeff = .01
-      elif G == "Unknown":
-          GenderCoeff = .21
-      else:
-          GenderCoeff = .21     
-      if R == "Yes":
-          RelationCoeff =  -.08
-      else:
-          RelationCoeff = 1  
-  
-      Answer = (-.11 * Rel) + GenderCoeff + RelationCoeff + (.00006 * Com) + (-.01 * W) + (.01 * E) + (-.01 * C) + (-.02 * S) + (.003 * Rug) + (.05 * Sale) + (.01 * M) + (.21 * A) 
-      Odds = np.exp(Answer)      
-      Prob = Odds/(1+Odds) 
-      Response = round(Prob * 100, 2)
-             
-      return Response
-
-  Tenses = MyTense(user_input)
-  Future = Tenses['future']
-  Past = Tenses['past'] 
-  
-  st.write("##### Results")
-  
-  Length = len(user_input.split())
-  
-  if Length == 0:
-      st.write("You have not entered a failure incident description yet.")
-  else:
-      FuturePR = round(Future/Length * 100, 2)
-      PastPR = round(Past/Length * 100, 2) 
-      st.write("Percentage of future-focused words in the description:", FuturePR, "%")
-      st.write("Percentage of past-focused words in the description:", PastPR, "%")
-      Relative = FuturePR - PastPR      
-      st.write("Future focus of the description:", Relative)
-      ScaledRel = (Relative + 100)/2
-      Comp = round(analyzer.polarity_scores(user_input).get('compound'), 2)
-      st.write("Compound sentiment score of the description:", Comp)
-      if Sales == 0:
-        LnSales = 10.32
-      else:
-        LnSales = ln(Sales + 1)
-      if Ad == 0:
-        Advertising = .06
-      else: 
-        Advertising = Ad 
-      Response = Resp(Relative, Comp, Gender, Relation, Warmth, Excitement, Competence, Sophistication, Ruggedness, LnSales, Advertising, Marketshare)
-      st.write("The likelihood that this consumer avoids the brand in the future:", Response, "%")
-
-
+    st.write("Bankruptcy ris:", Bankruptcyrisk)
 
 
