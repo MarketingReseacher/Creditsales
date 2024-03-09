@@ -2,26 +2,8 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
-import nltk
-nltk.download('vader_lexicon')
-nltk.download('wordnet')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('punkt')
-from nltk import word_tokenize
-import contractions
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
-
-# Define dictionaries
-PastDic = ['past', 'previously', 'previous', 'earlier', 'historically', 'formerly',  'history', 'before', 'prior', 'back', 
-             'retroactively', 'priorly', 'hitherto', 'anteriorly', 'yesterday', 'already',  'precedingly', 'afore', 'fore', 'yesteryear', 'antecedently', 
-             'was', 'were', 'wasnt', 'werent', 'been', 'hindsight', 'rearview', 'aforetime', 'heretofore', 'yore', 'ago', 'beforehand', 'since', 'then']
-  
-FutureDic = ['future', 'eventually', 'prospectively', 'henceforth', 'everytime', "everyday", "anytime", 'tomorrow', 'imminently',  'hereafter', 'hereon', 
-               'henceforward', 'longrun', 'longterm', 'forthcoming', 'upcoming', 'oncoming', 'incoming', 'impending', 'foreseeable',
-                'will', 'shall', 'wont', 'might',  'may', 'forward', 'aftertime', 'thereafter', 'potential', 'potentially', 'intermittently', 'successively', 'supposedly']  
-
-# Define function that calculates temporal features 
+# Define function that calculates Creditsales
 def MyTense(t):  
   Textclean = t.lower() 
   def ExpandContractions(text):
