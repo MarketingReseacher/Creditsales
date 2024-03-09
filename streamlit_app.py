@@ -4,7 +4,7 @@ import streamlit as st
 
 def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, IRoa):
     
-    Size = log(Assets + 1)
+    Size = np.log(Assets + 1)
     Profit = Ib/Assets
     Liquidity = WC/Assets
     Ad = AdStock/Assets
