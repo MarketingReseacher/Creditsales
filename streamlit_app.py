@@ -17,6 +17,8 @@ def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, Roa,
     
     return Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, Roa, RP
 
+Selected_tab = st.sidebar.selectbox("Select a tab", ["Credit sales predictor", "Bankruptcy risk predictor"])
+
 if Selected_tab == "Credit sales predictor":
     st.write("#### Credit sales Predictor")
     st.write("##### User Input")
