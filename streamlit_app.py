@@ -81,7 +81,7 @@ if Selected_tab == "Credit sales predictor":
     Creditsales = (-0.022 * PI) + (0.108 * BO) + (0.098 * PI * BO) + (-0.042 * Ad) + (-0.001 * RD) + (-0.004 * Size) + (-0.041 * Profit) + (0.030 * Liquidity) + (0.006 * Leverage) + (-0.019 * CI) + (0.005 * RE) + (0.000 * RP) + (-0.009 * Concentration) + (0.008 * SG) + (0.006 * ST) + (-0.015 * IC) + (0.002 * IG) + (0.031 * IT)
 
     Response = round(Creditsales * 100, 2)
-    st.write("Credit sales:", Response, "%")
+    st.write(" ##### Credit sales:", Response, "%")
 
 
 elif Selected_tab == "Bankruptcy risk predictor":
@@ -139,6 +139,6 @@ elif Selected_tab == "Bankruptcy risk predictor":
     Bankruptcyrisk = (23.597 * Creditsales)  + (-1.344 * PI) + (1.547 * BO) + (5.761 * PI * BO) + (17.652 * Ad) + (1.508 * RD) + (1.153 * Size) + (-2.950 * Profit) + (-1.285 * Liquidity) + (2.957 * Leverage) + (-1.685 * CI) + (-0.314 * RE) + (-0.003 * RP) + (-0.876 * Concentration) + (-2.756 * SG) + (3.485 * ST) + (-0.493 * IC) + (-0.507 * IG) + (-1.189 * IT)
 
     Response = round(Bankruptcyrisk, 2)
-    st.write("Bankruptcy risk:", Response)
+    st.write("##### Bankruptcy risk:", Response)
 
 
