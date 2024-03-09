@@ -29,37 +29,37 @@ if Selected_tab == "Credit sales predictor":
     if len(str(Assets)) == 0:
         Assets =  7298
     AdStock = st.number_input("Advertising stock, in dollars:")
-    if len(AdStock) == 0:
+    if len(str(AdStock)) == 0:
         AdStock = 63
     RDStock = st.number_input("R&D stock, in dollars:")
-    if len(RDStock) == 0:
+    if len(str(RDStock)) == 0:
         RDStock = 680
     Ib = st.number_input("Income before extraordinary items, in dollars:")
-    if len(Ib) == 0:
+    if len(str(Ib)) == 0:
         Ib = 394
     WC = st.number_input("Working capital, in dollars:")
-    if len(WC) == 0:
+    if len(str(WC)) == 0:
         WC = 921
     Dlc = st.number_input("Debt in current liabilities, in dollars:")
-    if len(Dlc) == 0:
+    if len(str(Dlc)) == 0:
         Dlc = 330   
     Dltt = st.number_input("Long-term debt, in dollars:")
-    if len(Dltt) == 0:
+    if len(str(Dltt)) == 0:
         Dltt = 1487
     MV = st.number_input("Market value, in dollars:")
-    if len(MV) == 0:
+    if len(str(MV)) == 0:
         MV = 8214
     PPE = st.number_input("Propery, plant, and equipment, in dollars:")
-    if len(PPE) == 0:
+    if len(str(PPE)) == 0:
         PPE = 2457
     Retained = st.number_input("Retained earnings, in dollars:")
-    if len(Retained) == 0:
+    if len(str(Retained)) == 0:
         Retained = 2783
     Ni = st.number_input("Net income, in dollars:")
-    if len(Ni) == 0:
+    if len(str(Ni)) == 0:
         Ni = 398
     IRoa = st.number_input("Average industry ROA, in dollars:")
-    if len(IRoa) == 0:
+    if len(str(IRoa)) == 0:
         IRoa = -3
     Concentration = st.slider('Segment concentration', min_value= 0.00, max_value = 1.00, value = .14)
     SG = st.slider('Sales growth', min_value= -1.00, max_value = 1.00, value = .07)
@@ -82,41 +82,41 @@ elif Selected_tab == "Bankruptcy risk predictor":
     Creditsales = st.slider('Credit sales', min_value=0.00, max_value = 1.00, value = .16)
     PI = st.slider('Product issues', min_value=0, max_value = 200, value =1)
     BO = st.slider('Buyer orientation', min_value= -1.00, max_value = 1.00, value = 0.11)
-    Assets = st.number_input("Assets, in dollars:")
-    if len(Assets) == 0:
+        Assets = st.number_input("Assets, in dollars:")
+    if len(str(Assets)) == 0:
         Assets =  7298
     AdStock = st.number_input("Advertising stock, in dollars:")
-    if len(AdStock) == 0:
+    if len(str(AdStock)) == 0:
         AdStock = 63
     RDStock = st.number_input("R&D stock, in dollars:")
-    if len(RDStock) == 0:
+    if len(str(RDStock)) == 0:
         RDStock = 680
-    ib = st.number_input("Income before extraordinary items, in dollars:")
-    if len(ib) == 0:
-        ib = 394
+    Ib = st.number_input("Income before extraordinary items, in dollars:")
+    if len(str(Ib)) == 0:
+        Ib = 394
     WC = st.number_input("Working capital, in dollars:")
-    if len(WC) == 0:
+    if len(str(WC)) == 0:
         WC = 921
     Dlc = st.number_input("Debt in current liabilities, in dollars:")
-    if len(Dlc) == 0:
+    if len(str(Dlc)) == 0:
         Dlc = 330   
     Dltt = st.number_input("Long-term debt, in dollars:")
-    if len(Dltt) == 0:
+    if len(str(Dltt)) == 0:
         Dltt = 1487
     MV = st.number_input("Market value, in dollars:")
-    if len(MV) == 0:
+    if len(str(MV)) == 0:
         MV = 8214
     PPE = st.number_input("Propery, plant, and equipment, in dollars:")
-    if len(PPE) == 0:
+    if len(str(PPE)) == 0:
         PPE = 2457
     Retained = st.number_input("Retained earnings, in dollars:")
-    if len(Retained) == 0:
+    if len(str(Retained)) == 0:
         Retained = 2783
-    ni = st.number_input("Net income, in dollars:")
-    if len(ni) == 0:
-        ni = 398
+    Ni = st.number_input("Net income, in dollars:")
+    if len(str(Ni)) == 0:
+        Ni = 398
     IRoa = st.number_input("Average industry ROA, in dollars:")
-    if len(IRoa) == 0:
+    if len(str(IRoa)) == 0:
         IRoa = -3
     Concentration = st.slider('Segment concentration', min_value= 0.00, max_value = 1.00, value = .14)
     SG = st.slider('Sales growth', min_value= -1.00, max_value = 1.00, value = .07)
