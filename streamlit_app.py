@@ -24,7 +24,7 @@ if Selected_tab == "Credit sales predictor":
     st.write("##### User Input")
 
     PI = st.slider('Product issues', min_value=0, max_value = 200, value =1)
-    BO = st.slider('Buyer orientation', min_value= -1, max_value = 1, value = 0.11)
+    BO = st.slider('Buyer orientation', min_value= -1, max_value = 1, value = 0.1)
     Assets = st.number_input("Assets, in dollars:")
     if len(Assets) == 0:
         Assets =  7298
@@ -61,12 +61,12 @@ if Selected_tab == "Credit sales predictor":
     IRoa = st.number_input("Average industry ROA, in dollars:")
     if len(IRoa) == 0:
         IRoa = -3
-    Concentration = st.slider('Segment concentration', min_value= 0, max_value = 1, value = .14)
-    SG = st.slider('Sales growth', min_value= -1, max_value = 1, value = .07)
-    ST = st.slider('Sales turbulence', min_value= -1, max_value = 1, value = .04)
-    IC = st.slider('Industry competition', min_value= 0, max_value = 1, value = .28)
-    IG = st.slider('Industry growth', min_value= -1, max_value = 1, value = .03)
-    IT = st.slider('Industry turbulence', min_value= -1, max_value = 1, value = .06)
+    Concentration = st.slider('Segment concentration', min_value= 0, max_value = 1, value = .1)
+    SG = st.slider('Sales growth', min_value= -1, max_value = 1, value = .1)
+    ST = st.slider('Sales turbulence', min_value= -1, max_value = 1, value = .1)
+    IC = st.slider('Industry competition', min_value= 0, max_value = 1, value = .3)
+    IG = st.slider('Industry growth', min_value= -1, max_value = 1, value = .1)
+    IT = st.slider('Industry turbulence', min_value= -1, max_value = 1, value = .1)
 
     Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, Roa, RP = Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, Roa, IRoa)
 
