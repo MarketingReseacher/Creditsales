@@ -2,20 +2,20 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-def Cov(Assets, ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, ni, Roa, IRoa):
+def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, Roa, IRoa):
     
     Size = ln(Assets + 1)
-    Profit = ib/Assets
+    Profit = Ib/Assets
     Liquidity = WC/Assets
     Ad = AdStock/Assets
     RD = RDStock/Assets
     Leverage = (Dlc + Dltt)/(Dlc + Dltt + MV)
     CI = PPE/Assets
     RE = Retained/Assets
-    Roa = ni/Assets
+    Roa = Ni/Assets
     RP = Roa - IRoa
     
-    return Size Profit Liquidity Ad RD Leverage CI RE Roa RP
+    return Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, Roa, RP
 
 if Selected_tab == "Credit sales predictor":
     st.write("#### Credit sales Predictor")
@@ -32,9 +32,9 @@ if Selected_tab == "Credit sales predictor":
     RDStock = st.number_input("R&D stock, in dollars:")
     if len(RDStock) == 0:
         RDStock = 680
-    ib = st.number_input("Income before extraordinary items, in dollars:")
-    if len(ib) == 0:
-        ib = 394
+    Ib = st.number_input("Income before extraordinary items, in dollars:")
+    if len(Ib) == 0:
+        Ib = 394
     WC = st.number_input("Working capital, in dollars:")
     if len(WC) == 0:
         WC = 921
@@ -53,9 +53,9 @@ if Selected_tab == "Credit sales predictor":
     Retained = st.number_input("Retained earnings, in dollars:")
     if len(Retained) == 0:
         Retained = 2783
-    ni = st.number_input("Net income, in dollars:")
-    if len(ni) == 0:
-        ni = 398
+    Ni = st.number_input("Net income, in dollars:")
+    if len(Ni) == 0:
+        Ni = 398
     IRoa = st.number_input("Average industry ROA, in dollars:")
     if len(IRoa) == 0:
         IRoa = -3
@@ -66,7 +66,7 @@ if Selected_tab == "Credit sales predictor":
     IG = st.slider('Industry growth', min_value= -1, max_value = 1, value = .03)
     IT = st.slider('Industry turbulence', min_value= -1, max_value = 1, value = .06)
 
-    Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, Roa, RP = Cov(Assets, ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, ni, Roa, IRoa)
+    Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, Roa, RP = Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Ni, Roa, IRoa)
 
     Creditsales = ((-0.022 * PI) + (0.108 * BO) + (0.098 * PI * BO) + (-0.042 * Ad) + (-0.001 * RD) + (-0.004 * Size) + (-0.041 * Profit) + (0.030 * Liquidity) + (0.006 * Leverage) + (-0.019 * CI) + (0.005 * RE) + (0.000 * RP) + (-0.009 * Concentration) + (0.008 * SG) + (0.006 * ST) + (-0.015 * IC) + (0.002 * IG) + (0.031 * IT)) * 100
 
