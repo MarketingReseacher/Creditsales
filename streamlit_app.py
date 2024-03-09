@@ -30,7 +30,7 @@ if Selected_tab == "Credit sales predictor":
     st.write("#### Credit sales Predictor")
     st.write("##### User Input")
 
-    PI = st.number_input("Number of product issues:", value = 0)
+    PI = st.number_input("Number of product issues:", value = 1)
     BO = st.slider('Buyer orientation', min_value= -1.00, max_value = 1.00, value = 0.3)
     Assets = st.number_input("Assets, in dollars:", value = 7300)
     AdStock = st.number_input("Advertising stock, in dollars:", value = 60)
@@ -64,7 +64,7 @@ elif Selected_tab == "Bankruptcy risk predictor":
     st.write("##### User Input")
 
     Creditsales = st.slider('Credit sales', min_value=0.00, max_value = 1.00, value = .16)
-    PI = st.number_input("Number of product issues:", value = 0)
+    PI = st.number_input("Number of product issues:", value = 1)
     BO = st.slider('Buyer orientation', min_value= -1.00, max_value = 1.00, value = 0.3)
     Assets = st.number_input("Assets, in dollars:", value = 7300)
     AdStock = st.number_input("Advertising stock, in dollars:", value = 60)
