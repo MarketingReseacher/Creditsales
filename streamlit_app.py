@@ -28,6 +28,7 @@ Selected_tab = st.sidebar.selectbox("Select a tab", ["Credit sales estimator", "
 
 if Selected_tab == "Credit sales estimator":
     st.write("#### Credit Sales Estimator")
+    st.write(" ##### Credit sales:", Response, "%")
     st.write("##### User Input")
 
     PI = st.number_input("Number of product issues:", value = 1)
@@ -56,7 +57,6 @@ if Selected_tab == "Credit sales estimator":
     Creditsales = (-0.022 * PI) + (0.108 * BO) + (0.098 * PI * BO) + (-0.042 * Ad) + (-0.001 * RD) + (-0.004 * Size) + (-0.041 * Profit) + (0.030 * Liquidity) + (0.006 * Leverage) + (-0.019 * CI) + (0.005 * RE) + (0.000 * RP) + (-0.009 * Concentration) + (0.008 * SG) + (0.006 * ST) + (-0.015 * IC) + (0.002 * IG) + (0.031 * IT)
 
     Response = round(Creditsales * 100, 2)
-    st.write(" ##### Credit sales:", Response, "%")
 
 
 elif Selected_tab == "Bankruptcy risk estimator":
