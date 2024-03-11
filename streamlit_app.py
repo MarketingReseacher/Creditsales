@@ -27,8 +27,8 @@ def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRo
 Selected_tab = st.sidebar.selectbox("Select a tab", ["Credit sales estimator", "Bankruptcy risk estimator", "Bankruptcy risk predictor"], help = "Choose 'Credit sales estimator' if you want to estimate the firm\'s credit sales using our 2SLS fixed-effects model coefficients. Choose 'Bankruptcy risk estimator' if you want to estimate the firm\'s bankruptcy risk using our 2SLS fixed-effects model coefficients, and choose 'Bankruptcy risk predictor' if you want to predict the firm's bankruptcy risk using the tuned machine learning model.")
 
 if Selected_tab == "Credit sales estimator":
-    st.write("## Credit Sales Estimator")
-    st.write("### User Input")
+    st.write("### Credit Sales Estimator")
+    st.write("#### User Input")
 
     PI = st.number_input("Number of product issues:", value = 1)
     BO = st.slider('Buyer orientation', min_value= -1.00, max_value = 1.00, value = 0.5)
@@ -56,7 +56,7 @@ if Selected_tab == "Credit sales estimator":
     Creditsales = (-0.022 * PI) + (0.108 * BO) + (0.098 * PI * BO) + (-0.042 * Ad) + (-0.001 * RD) + (-0.004 * Size) + (-0.041 * Profit) + (0.030 * Liquidity) + (0.006 * Leverage) + (-0.019 * CI) + (0.005 * RE) + (0.000 * RP) + (-0.009 * Concentration) + (0.008 * SG) + (0.006 * ST) + (-0.015 * IC) + (0.002 * IG) + (0.031 * IT)
 
     Response = round(Creditsales * 100, 2)
-    st.write("### Credit sales:", Response, "%")
+    st.write("#### Credit sales:", Response, "%")
 
 
 elif Selected_tab == "Bankruptcy risk estimator":
