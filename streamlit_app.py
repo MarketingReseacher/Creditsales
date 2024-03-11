@@ -60,8 +60,8 @@ if Selected_tab == "Credit sales estimator":
 
 
 elif Selected_tab == "Bankruptcy risk estimator":
-    st.write("#### Bankruptcy Risk Estimator")
-    st.write("##### User Input")
+    st.write("### Bankruptcy Risk Estimator")
+    st.write("#### User Input")
 
     Creditsales = st.slider('Credit sales', min_value=0.00, max_value = 1.00, value = .04)
     PI = st.number_input("Number of product issues:", value = 1)
@@ -90,13 +90,13 @@ elif Selected_tab == "Bankruptcy risk estimator":
     Bankruptcyrisk = (23.597 * Creditsales)  + (-1.344 * PI) + (1.547 * BO) + (5.761 * PI * BO) + (17.652 * Ad) + (1.508 * RD) + (1.153 * Size) + (-2.950 * Profit) + (-1.285 * Liquidity) + (2.957 * Leverage) + (-1.685 * CI) + (-0.314 * RE) + (-0.003 * RP) + (-0.876 * Concentration) + (-2.756 * SG) + (3.485 * ST) + (-0.493 * IC) + (-0.507 * IG) + (-1.189 * IT)
 
     Response = round(Bankruptcyrisk, 2)
-    st.write("##### Bankruptcy risk:", Response)
+    st.write("#### Bankruptcy risk:", Response)
 
 
 
 else:
-    st.write("#### Bankruptcy Risk Predictor")
-    st.write("##### User Input")
+    st.write("### Bankruptcy Risk Predictor")
+    st.write("#### User Input")
 
     Creditsales = st.slider('Credit sales', min_value=0.00, max_value = 1.00, value = .04)
     PI = st.number_input("Number of product issues:", value = 1)
@@ -123,5 +123,5 @@ else:
     Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP = Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRoa)
 
     #Response = round(Bankruptcyrisk, 2)
-    st.write("##### Bankruptcy risk:", 5)
+    st.write("#### Bankruptcy risk:", 5)
 
