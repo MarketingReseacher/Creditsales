@@ -24,10 +24,10 @@ def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRo
     
     return Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP
 
-Selected_tab = st.sidebar.selectbox("Select a tab", ["Credit sales predictor", "Bankruptcy risk predictor"], help = "Choose 'Credit sales predictor' if you want to predict the firm\'s credit sales based on the number of its product issues, buyer orientation, and other financial covariates. Choose 'Bankruptcy risk predictor' if you want to predict the firm\'s bankruptcy risk based on its credit sales, product issues, buyer orientation, and financial covariates")
+Selected_tab = st.sidebar.selectbox("Select a tab", ["Credit sales estimator", "Bankruptcy risk estimator", "Bankruptcy risk predictor"], help = "Choose 'Credit sales estimator' if you want to estimate the firm\'s credit sales using our 2SLS fixed-effects model coefficients. Choose 'Bankruptcy risk estimator' if you want to estimate the firm\'s bankruptcy risk using our 2SLS fixed-effects model coefficients, and choose 'Bankruptcy risk predictor' if you want to predict the firm's bankruptcy risk using the tunes machine learning model.")
 
-if Selected_tab == "Credit sales predictor":
-    st.write("#### Credit sales Predictor")
+if Selected_tab == "Credit sales estimator":
+    st.write("#### Credit Sales Estimator")
     st.write("##### User Input")
 
     PI = st.number_input("Number of product issues:", value = 1)
@@ -59,8 +59,8 @@ if Selected_tab == "Credit sales predictor":
     st.write(" ##### Credit sales:", Response, "%")
 
 
-elif Selected_tab == "Bankruptcy risk predictor":
-    st.write("#### Bankruptcy risk Predictor")
+elif Selected_tab == "Bankruptcy risk estimator":
+    st.write("#### Bankruptcy Risk Estimator")
     st.write("##### User Input")
 
     Creditsales = st.slider('Credit sales', min_value=0.00, max_value = 1.00, value = .04)
@@ -92,4 +92,36 @@ elif Selected_tab == "Bankruptcy risk predictor":
     Response = round(Bankruptcyrisk, 2)
     st.write("##### Bankruptcy risk:", Response)
 
+
+
+else:
+    st.write("#### Bankruptcy Risk Predictor")
+    st.write("##### User Input")
+
+    Creditsales = st.slider('Credit sales', min_value=0.00, max_value = 1.00, value = .04)
+    PI = st.number_input("Number of product issues:", value = 1)
+    BO = st.slider('Buyer orientation', min_value= -1.00, max_value = 1.00, value = 0.5)
+    Assets = st.number_input("Total assets, in million dollars:", value = 7300)
+    AdStock = st.number_input("Advertising stock, in million dollars:", value = 60)
+    RDStock = st.number_input("R&D stock, in million dollars:", value = 600)
+    Ib = st.number_input("Income before extraordinary items, in million dollars:", value = 100)
+    WC = st.number_input("Working capital, in million dollars:", 2200)
+    Dlc = st.number_input("Debt in current liabilities, in million dollars:", 350)
+    Dltt = st.number_input("Long-term debt, in million dollars:", 1500)
+    MV = st.number_input("Market value, in million dollars:", 8200)
+    PPE = st.number_input("Propery, plant, and equipment, in million dollars:", 1400)
+    Retained = st.number_input("Retained earnings, in million dollars:", 100)
+    Roa = st.number_input("Roa, in million dollars:", 1)
+    IRoa = st.number_input("Average industry ROA, in million dollars:", 0)
+    Concentration = st.slider('Segment concentration', min_value= 0.00, max_value = 1.00, value = .14)
+    SG = st.slider('Sales growth', min_value= -1.00, max_value = 1.00, value = .07)
+    ST = st.slider('Sales turbulence', min_value= -1.00, max_value = 1.00, value = .04)
+    IC = st.slider('Industry competition', min_value= 0.00, max_value = 1.00, value = .28)
+    IG = st.slider('Industry growth', min_value= -1.00, max_value = 1.00, value = .03)
+    IT = st.slider('Industry turbulence', min_value= -1.00, max_value = 1.00, value = .06)
+
+    Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP = Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRoa)
+
+    #Response = round(Bankruptcyrisk, 2)
+    st.write("##### Bankruptcy risk:", 5)
 
