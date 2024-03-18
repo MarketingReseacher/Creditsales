@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import sklearn
-from sklearn.neural_network import MLPRegressor
 from sklearn.ensemble import RandomForestRegressor
 
 
@@ -144,6 +143,7 @@ else:
         return Model
         
     Model = RF()
-    Response = round(Model.predict(Xnew)[0], 2)
+    BR = Model.predict(Xnew)[0]
+    Response = round(BR, 2)
     st.write("#### Bankruptcy risk:", Response)
 
