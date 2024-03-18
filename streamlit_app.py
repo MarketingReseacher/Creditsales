@@ -145,6 +145,6 @@ else:
 
     Xnew = np.array([Creditsales, PI, BO, Ad, RD, Size, Profit, Liquidity, Leverage, CI, RE, RP, Concentration, SG, ST, IC, IG, IT]).reshape(1,-1)
 
-    Response = round(MLP.predict(Xnew), 2)
+    Response = round(MLP.predict(Xnew)[0], 2)
     #st.write("#### Bankruptcy risk:", Response)
 
