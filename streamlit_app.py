@@ -130,7 +130,7 @@ else:
 
     @st.cache_resource
     def RF():
-        df = pd.read_csv("ForML.csv")
+        df = pd.read_csv("ForST.csv")
         NotUse = ['fyear']
         Non = NotUse + ['DV2']
         Numeric = df.loc[:, ~df.columns.isin(Non)]
