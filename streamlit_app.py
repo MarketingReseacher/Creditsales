@@ -140,7 +140,7 @@ else:
         Covariates = list(Numeric.columns)
         X = Data[Covariates].values
         y = Data[outcome].values
-        rf = RandomForestRegressor(n_estimators=40, random_state=70, max_features=5)
+        rf = RandomForestRegressor(n_estimators=40, random_state=123)
         Model = rf.fit(X, y)
         return Model
         
