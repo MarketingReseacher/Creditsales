@@ -29,7 +29,7 @@ def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRo
     
     return Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP
 
-Selected_tab = st.sidebar.selectbox("Select a tab", ["Bankruptcy risk predictor", "Credit sales estimator", "Bankruptcy risk estimator"], help = "choose 'Bankruptcy risk predictor' if you want to predict the firm's bankruptcy risk using the tuned machine learning model. Choose 'Credit sales estimator' if you want to estimate the firm\'s credit sales using our 2SLS fixed-effects model coefficients. Choose 'Bankruptcy risk estimator' if you want to estimate the firm\'s bankruptcy risk using our 2SLS fixed-effects model coefficients.")
+Selected_tab = st.sidebar.selectbox("Select a tab", ["Bankruptcy risk predictor", "Credit sales estimator", "Bankruptcy risk estimator"], help = "choose 'Bankruptcy risk predictor' if you want to predict the firm's bankruptcy risk using the tuned machine learning model.  \n\nChoose 'Credit sales estimator' if you want to estimate the firm\'s credit sales using our 2SLS fixed-effects model coefficients.  \n\nChoose 'Bankruptcy risk estimator' if you want to estimate the firm\'s bankruptcy risk using our 2SLS fixed-effects model coefficients.")
 
 if Selected_tab == "Credit sales estimator":
     st.write("### Credit Sales Estimator")
