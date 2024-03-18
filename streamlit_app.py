@@ -141,11 +141,10 @@ else:
     y = Data[outcome].values
     
     MLP = MLPRegressor(alpha=0.1, random_state=123, warm_start=True)
+    MLP.fit(X, y)
 
-    Xnew = [Creditsales, PI, BO, Ad, RD, Size, Profit, Liquidity, Leverage, CI, RE, RP, Concentration, SG, ST, IC, IG, IT]
+    Xnew = np.array([Creditsales, PI, BO, Ad, RD, Size, Profit, Liquidity, Leverage, CI, RE, RP, Concentration, SG, ST, IC, IG, IT]).reshape(1,-1)
 
-    st.write(Xnew)
-
-    #Response = round(MLP.predict(Xnew), 2)
-    #st.write("#### Bankruptcy risk:", MLP.predict(Xnew))
+    Response = round(MLP.predict(Xnew), 2)
+    #st.write("#### Bankruptcy risk:", Response)
 
