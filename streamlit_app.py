@@ -127,8 +127,8 @@ else:
 
 
     df = pd.read_csv("ForML.csv")
-    st.write("Output preview")
-    st.write(df.head())
+    #st.write("Output preview")
+    #st.write(df.head())
     
     NotUse = ['fyear']
     Non = NotUse + ['DV2']
