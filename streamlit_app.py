@@ -142,6 +142,8 @@ else:
     
     MLP = MLPRegressor(alpha=0.1, random_state=123, warm_start=True)
 
-    #Response = round(Bankruptcyrisk, 2)
+    Xnew = [Creditsales, PI, BO, Ad, RD, Size, Profit, Liquidity, Leverage, CI, RE, RP, Concentration, SG, ST, IC, IG, IT]
+
+    #Response = round(MLP.predict(Xnew), 2)
     st.write("#### Bankruptcy risk:", 5)
 
