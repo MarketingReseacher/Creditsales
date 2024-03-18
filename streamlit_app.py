@@ -131,8 +131,7 @@ else:
     @st.cache_resource
     def RF():
         df = pd.read_csv("ForST.csv")
-        NotUse = ['fyear']
-        Non = NotUse + ['DV2']
+        Non = ['DV2']
         Numeric = df.loc[:, ~df.columns.isin(Non)]
         Numerics = Numeric.select_dtypes(include='number')
         Data = pd.concat([df['DV2'], Numeric], axis=1)
@@ -145,6 +144,6 @@ else:
         return Model
         
     Model = RF()
-    Response = round(Model.predict(Xnew)[0] + 17, 2)
+    Response = round(Model.predict(Xnew)[0], 2)
     st.write("#### Bankruptcy risk:", Response)
 
