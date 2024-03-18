@@ -128,7 +128,7 @@ else:
     Xnew = np.array([Creditsales, PI, BO, Ad, RD, Size, Profit, Liquidity, Leverage, CI, RE, RP, Concentration, SG, ST, IC, IG, IT]).reshape(1,-1)
 
     @st.cache_resource
-    def readdata():
+    def MLP():
         df = pd.read_csv("ForML.csv")
         NotUse = ['fyear']
         Non = NotUse + ['DV2']
@@ -139,11 +139,11 @@ else:
         Covariates = list(Numeric.columns)
         X = Data[Covariates].values
         y = Data[outcome].values
-        MLP = MLPRegressor(alpha=0.1, random_state=123, warm_start=True)
-        Model = MLP.fit(X, y)
+        mlp = MLPRegressor(alpha=0.1, random_state=123, warm_start=True)
+        Model = mlp.fit(X, y)
         return Model
         
-    Model = readdata()
+    Model = MLP()
     Response = round(Model.predict(Xnew)[0], 2)
     #st.write("#### Bankruptcy risk:", Response)
 
