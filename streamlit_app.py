@@ -127,6 +127,8 @@ else:
 
 
     df = pd.read_csv("ForML.csv")
+    st.write("Output preview")
+    st.write(df.head())
     
     NotUse = ['fyear']
     Non = NotUse + ['DV2']
@@ -139,7 +141,6 @@ else:
     y = Data[outcome].values
     
     MLP = MLPRegressor(alpha=0.1, random_state=123, warm_start=True)
-
 
     #Response = round(Bankruptcyrisk, 2)
     st.write("#### Bankruptcy risk:", 5)
