@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
+import sklearn
+from sklearn.neural_network import MLPRegressor
 
 def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRoa):
     
