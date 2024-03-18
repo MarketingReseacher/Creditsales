@@ -144,6 +144,8 @@ else:
 
     Xnew = [Creditsales, PI, BO, Ad, RD, Size, Profit, Liquidity, Leverage, CI, RE, RP, Concentration, SG, ST, IC, IG, IT]
 
+    st.write(Xnew)
+
     #Response = round(MLP.predict(Xnew), 2)
-    st.write("#### Bankruptcy risk:", MLP.predict(Xnew))
+    #st.write("#### Bankruptcy risk:", MLP.predict(Xnew))
 
