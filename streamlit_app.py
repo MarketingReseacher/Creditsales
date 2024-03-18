@@ -145,5 +145,5 @@ else:
         
     Model = MLP()
     Response = round(Model.predict(Xnew)[0], 2)
-    #st.write("#### Bankruptcy risk:", Response)
+    st.write("#### Bankruptcy risk:", Response)
 
