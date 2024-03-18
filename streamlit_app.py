@@ -144,6 +144,7 @@ else:
         return Model
         
     Model = RF()
-    Response = round((Model.predict(Xnew)[0]) + 15 , 2)
+    BR = Model.predict(Xnew)[0] + 15
+    Response = round(BR, 2)
     st.write("#### Bankruptcy risk:", Response)
 
