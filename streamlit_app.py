@@ -3,6 +3,9 @@ import pandas as pd
 import streamlit as st
 import sklearn
 from sklearn.neural_network import MLPRegressor
+from sklearn.ensemble import RandomForestRegressor
+
+
 
 def Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRoa):
     
@@ -95,7 +98,6 @@ elif Selected_tab == "Bankruptcy risk estimator":
     st.write("#### Bankruptcy risk:", Response)
 
 
-
 else:
     st.write("### Bankruptcy Risk Predictor")
     st.write("#### User Input")
@@ -124,23 +126,25 @@ else:
 
     Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP = Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRoa)
 
+    Xnew = np.array([Creditsales, PI, BO, Ad, RD, Size, Profit, Liquidity, Leverage, CI, RE, RP, Concentration, SG, ST, IC, IG, IT]).reshape(1,-1)
 
-
-    df = pd.read_csv("ForML.csv")
-    
-    NotUse = ['fyear']
-    Non = NotUse + ['DV2']
-    Numeric = df.loc[:, ~df.columns.isin(Non)]
-    Numerics = Numeric.select_dtypes(include='number')
-    Data = pd.concat([df['DV2'], Numeric], axis=1)
-    outcome = 'DV2'
-    Covariates = list(Numeric.columns)
-    X = Data[Covariates].values
-    y = Data[outcome].values
-    
-    MLP = MLPRegressor(alpha=0.1, random_state=123, warm_start=True)
-
-
-    #Response = round(Bankruptcyrisk, 2)
-    st.write("#### Bankruptcy risk:", 5)
+    @st.cache_resource
+    def RF():
+        df = pd.read_csv("ForML.csv")
+        NotUse = ['fyear']
+        Non = NotUse + ['DV2']
+        Numeric = df.loc[:, ~df.columns.isin(Non)]
+        Numerics = Numeric.select_dtypes(include='number')
+        Data = pd.concat([df['DV2'], Numeric], axis=1)
+        outcome = 'DV2'
+        Covariates = list(Numeric.columns)
+        X = Data[Covariates].values
+        y = Data[outcome].values
+        rf = RandomForestRegressor(random_state=70)
+        Model = rf.fit(X, y)
+        return Model
+        
+    Model = RF()
+    Response = round(Model.predict(Xnew)[0], 2)
+    st.write("#### Bankruptcy risk:", Response)
 
