@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 import sklearn
 from sklearn.neural_network import MLPRegressor
+from sklearn.ensemble import RandomForestRegressor
 
 
 
@@ -128,7 +129,7 @@ else:
     Xnew = np.array([Creditsales, PI, BO, Ad, RD, Size, Profit, Liquidity, Leverage, CI, RE, RP, Concentration, SG, ST, IC, IG, IT]).reshape(1,-1)
 
     @st.cache_resource
-    def MLP():
+    def RF():
         df = pd.read_csv("ForML.csv")
         NotUse = ['fyear']
         Non = NotUse + ['DV2']
@@ -139,11 +140,11 @@ else:
         Covariates = list(Numeric.columns)
         X = Data[Covariates].values
         y = Data[outcome].values
-        mlp = MLPRegressor(alpha=0.1, random_state=123, warm_start=True)
+        rf = RandomForestRegressor(random_state=70)
         Model = mlp.fit(X, y)
         return Model
         
-    Model = MLP()
+    Model = RF()
     Response = round(Model.predict(Xnew)[0], 2)
     st.write("#### Bankruptcy risk:", Response)
 
