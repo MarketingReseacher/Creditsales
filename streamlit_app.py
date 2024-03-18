@@ -94,7 +94,22 @@ elif Selected_tab == "Bankruptcy risk estimator":
     Response = round(Bankruptcyrisk, 2)
     st.write("#### Bankruptcy risk:", Response)
 
-
+@st.cache_resource
+def readdata():
+    df = pd.read_csv("ForML.csv")
+    NotUse = ['fyear']
+    Non = NotUse + ['DV2']
+    Numeric = df.loc[:, ~df.columns.isin(Non)]
+    Numerics = Numeric.select_dtypes(include='number')
+    Data = pd.concat([df['DV2'], Numeric], axis=1)
+    outcome = 'DV2'
+    Covariates = list(Numeric.columns)
+    X = Data[Covariates].values
+    y = Data[outcome].values
+    MLP = MLPRegressor(alpha=0.1, random_state=123, warm_start=True)
+    Model = MLP.fit(X, y)
+    
+    return Model
 
 else:
     st.write("### Bankruptcy Risk Predictor")
@@ -123,25 +138,6 @@ else:
     IT = st.slider('Industry turbulence', min_value= -1.00, max_value = 1.00, value = .06)
 
     Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP = Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRoa)
-
-
-
-    df = pd.read_csv("ForML.csv")
-    #st.write("Output preview")
-    #st.write(df.head())
-    
-    NotUse = ['fyear']
-    Non = NotUse + ['DV2']
-    Numeric = df.loc[:, ~df.columns.isin(Non)]
-    Numerics = Numeric.select_dtypes(include='number')
-    Data = pd.concat([df['DV2'], Numeric], axis=1)
-    outcome = 'DV2'
-    Covariates = list(Numeric.columns)
-    X = Data[Covariates].values
-    y = Data[outcome].values
-    
-    MLP = MLPRegressor(alpha=0.1, random_state=123, warm_start=True)
-    MLP.fit(X, y)
 
     Xnew = np.array([Creditsales, PI, BO, Ad, RD, Size, Profit, Liquidity, Leverage, CI, RE, RP, Concentration, SG, ST, IC, IG, IT]).reshape(1,-1)
 
