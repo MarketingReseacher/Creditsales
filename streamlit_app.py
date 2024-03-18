@@ -141,7 +141,7 @@ else:
         X = Data[Covariates].values
         y = Data[outcome].values
         rf = RandomForestRegressor(random_state=70)
-        Model = mlp.fit(X, y)
+        Model = rf.fit(X, y)
         return Model
         
     Model = RF()
