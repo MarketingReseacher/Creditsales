@@ -124,6 +124,23 @@ else:
 
     Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP = Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRoa)
 
+
+
+    df = pd.read_csv("ForML.csv")
+    
+    NotUse = ['fyear']
+    Non = NotUse + ['DV2']
+    Numeric = df.loc[:, ~df.columns.isin(Non)]
+    Numerics = Numeric.select_dtypes(include='number')
+    Data = pd.concat([df['DV2'], Numeric], axis=1)
+    outcome = 'DV2'
+    Covariates = list(Numeric.columns)
+    X = Data[Covariates].values
+    y = Data[outcome].values
+    
+    MLP = MLPRegressor(alpha=0.1, random_state=123, warm_start=True)
+
+
     #Response = round(Bankruptcyrisk, 2)
     st.write("#### Bankruptcy risk:", 5)
 
