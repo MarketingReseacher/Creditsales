@@ -138,12 +138,12 @@ else:
         Covariates = list(Numeric.columns)
         X = Data[Covariates].values
         y = Data[outcome].values
-        rf = RandomForestRegressor(n_estimators=50, random_state=0)
+        rf = RandomForestRegressor(n_estimators=100, random_state=0)
         Model = rf.fit(X, y)
         return Model
         
     Model = RF()
-    BR = Model.predict(Xnew)[0] 
+    BR = Model.predict(Xnew)[0] + 20
     Response = round(BR, 2)
     st.write("#### Bankruptcy risk:", Response)
 
