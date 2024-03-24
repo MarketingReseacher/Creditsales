@@ -91,7 +91,7 @@ elif Selected_tab == "Bankruptcy risk estimator":
 
     Size, Profit, Liquidity, Ad, RD, Leverage, CI, RE, RP = Cov(Assets, Ib, WC, AdStock, RDStock, Dlc, Dltt, MV, PPE, Retained, Roa, IRoa)
 
-    Bankruptcyrisk = (23.597 * Creditsales)  + (-1.344 * PI) + (1.547 * BO) + (5.761 * PI * BO) + (17.652 * Ad) + (1.508 * RD) + (1.153 * Size) + (-2.950 * Profit) + (-1.285 * Liquidity) + (2.957 * Leverage) + (-1.685 * CI) + (-0.314 * RE) + (-0.003 * RP) + (-0.876 * Concentration) + (-2.756 * SG) + (3.485 * ST) + (-0.493 * IC) + (-0.507 * IG) + (-1.189 * IT)
+    Bankruptcyrisk = (.29 * Creditsales)  + (-.5 * PI) + (.04 * BO) + (.25 * PI * BO) + (.07 * Ad) + (.07 * RD) + (.43 * Size) + (-.09 * Profit) + (-.05 * Liquidity) + (.10 * Leverage) + (-.05 * CI) + (-0.11 * RE) + (-0.003 * RP) + (-0.04 * Concentration) + (-0.06 * SG) + (.02 * ST) + (-0.02 * IC) + (-0.02 * IG) + (-.01 * IT)
 
     Response = round(Bankruptcyrisk, 2)
     st.write("#### Bankruptcy risk:", Response)
