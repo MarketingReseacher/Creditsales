@@ -19,8 +19,8 @@ def Cov(Assets, WC, Dlc, Dltt, MV, RDStock, SGA):
     
     return Size, Liquidity, Leverage, Debt, RD, SI
 
-st.write("### ROA Estimator")
-st.write("#### User Input")
+st.write("### Return on Assets (ROA) Estimator")
+st.write("##### User Input")
 
 TC_1 = st.slider('Credit sales', min_value=0.00, max_value = 1.00, value = .16) 
 TC = TC_1 
@@ -54,9 +54,6 @@ IT = IT_1 - .06
 Size, Liquidity, Leverage, Debt, RD, SI = Cov(Assets, WC, Dlc, Dltt, MV, RDStock, SGA)
 
 ROA = (-.89 * TC)  + (-.03 * PI) + (-.11 * PI * TC) + (-.04 * Size) + (-.04 * Liquidity) + (.02 * Leverage) + (.00 * Debt) + (-.06 * RD) + (-.003 * SI) + (-.05 * Concentration) + (.1 * SG) + (-.18 * ST) + (-.001 * IG) + (.04 * IT)
-
-
-
 
 Response = round(ROA, 2)
 st.write("#### ROA:", Response)
