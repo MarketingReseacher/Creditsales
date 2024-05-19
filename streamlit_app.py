@@ -25,7 +25,7 @@ st.write("#### User Input")
 TC_1 = st.slider('Credit sales', min_value=0.00, max_value = 1.00, value = .16) 
 TC = TC_1 
 PI_1 = st.number_input("Number of product issues:", value = 1)
-PI = PI_1 - .08
+PI = PI_1 - 1
 Assets_1 = st.number_input("Total assets, in million dollars:", value = 7000)
 Assets = Assets_1 - 7000
 WC_1 = st.number_input("Working capital, in million dollars:", 900)
