@@ -20,7 +20,6 @@ def Cov(Assets, WC, Dlc, Dltt, MV, RDStock, SGA):
     return Size, Liquidity, Leverage, Debt, RD, SI
 
 st.write("### Return on Assets (ROA) Estimator")
-st.write("##### User Input")
 
 TC_1 = st.slider('Credit sales', min_value=0.00, max_value = 1.00, value = .16) 
 TC = TC_1 
