@@ -8,9 +8,9 @@ def Cov(Assets, WC, Dlc, Dltt, MV, RDStock, SGA):
     Size = (np.log(Assets + 1)) -  7.07
     Sum = Dlc + Dltt + MV
     if Assets == 0:
-        Assets = .05
+        Assets = 1
     if Sum == 0:
-        Sum = .05 
+        Sum = 1
     Liquidity = (WC/Assets) - .30
     Leverage = ((Dlc + Dltt)/Sum) - .18
     Debt = (Dlc + (1/2 * Dltt)) - 805
