@@ -25,6 +25,8 @@ TC_1 = st.slider('Credit sales', min_value=0.00, max_value = 1.00, value = .16)
 TC = TC_1 - .16
 PI_1 = st.number_input("Number of product issues:", value = 1)
 PI = PI_1 - 1
+BO_1 = st.slider('Buyer orientation', min_value= -1.00, max_value = 1.00, value = .11) 
+BO = BO_1 - .11
 
 Assets_1 = st.number_input("Total assets, in million dollars:", value = 7000)
 Assets = Assets_1 - 7000
@@ -53,7 +55,7 @@ IT = IT_1 - .06
 
 Size, Liquidity, Leverage, Debt, RD, SI = Cov(Assets, WC, Dlc, Dltt, MV, RDStock, SGA)
 
-ROA = (-.89 * TC)  + (-.03 * PI) + (-.11 * PI * TC) + (-.04 * Size) + (-.04 * Liquidity) + (.02 * Leverage) + (.00 * Debt) + (-.06 * RD) + (-.003 * SI) + (-.05 * Concentration) + (.1 * SG) + (-.18 * ST) + (-.001 * IG) + (.04 * IT)
+ROA = (-.86 * TC)  + (-.04 * PI) + (-.36 * BO) + (-.10 * PI * TC) + (-.04 * Size) + (-.04 * Liquidity) + (.02 * Leverage) + (.00 * Debt) + (-.06 * RD) + (.001 * SI) + (-.05 * Concentration) + (.11 * SG) + (-.19 * ST) + (.001 * IG) + (.02 * IT)
 
 Response = round(ROA, 2)
 st.write("#### ROA:", Response)
