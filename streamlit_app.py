@@ -23,7 +23,7 @@ st.write("### Operational Performance Estimator")
 TC_1 = st.slider('Trade credit', min_value=0.00, max_value = 1.00, value = .16) 
 TC = TC_1 - .16
 PI_1 = st.number_input("Product risk incidents:", value = 1)
-PI = PI_1 
+PI = PI_1 - 1 
 BO_1 = st.slider('Buyer orientation', min_value= -1.00, max_value = 1.00, value = .16) 
 BO = BO_1 - .16
 
