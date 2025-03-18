@@ -18,7 +18,7 @@ def Cov(Assets, WC, Dlc, Dltt, MV, Cogs):
     
     return Size, Liquidity, Leverage, Debt, Costs
 
-st.write("### Operational Performance Estimator")
+st.write("##### Operational Performance Estimator")
 
 TC_1 = st.slider('Trade credit', min_value=0.00, max_value = 1.00, value = .16) 
 TC = TC_1 - .16
