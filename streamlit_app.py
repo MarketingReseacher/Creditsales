@@ -46,7 +46,7 @@ IT = IT_1 - .06
 
 Size, Liquidity, Leverage, Debt, Costs = Cov(Assets, WC, Dlc, Dltt, MV, Cogs)
 
-ROA = (-.11 * TC)  + (-.02 * PI) + (-1.67 * BO) + (.01 * Size) + (.02 * Liquidity) + (-.17 * Leverage) + (0.02 * Costs) + (.22 * Debt) + (-.03 * Concentration) + (.02 * SG) + (-.22 * ST) + (.002 * IG) + (.02 * IT)
+ROA = (-.05 * TC)  + (-.22 * PI) + (-.06 * PI * TC) + (.01 * BO) + (.07 * Size) + (.02 * Liquidity) + (-.07 * Leverage) + (0.04 * Costs) + (.09 * Debt) + (-.01 * Concentration) + (.01 * SG) + (-.03 * ST) + (.003 * IG) + (.01 * IT)
 
 Response = round(ROA, 2)
 st.write("#### Operational Performance:", Response)
