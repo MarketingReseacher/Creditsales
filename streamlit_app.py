@@ -18,13 +18,13 @@ def Cov(Assets, WC, Dlc, Dltt, MV, Cogs):
     
     return Size, Liquidity, Leverage, Debt, Costs
 
-st.write("##### Operational Performance Estimator")
+st.write("##### Profitability Estimator")
 
 TC_1 = st.slider('Trade credit', min_value=0.00, max_value = 1.00, value = .16) 
 TC = TC_1 - .16
 PI_1 = st.number_input("Product risk incidents:", value = 1)
 PI = PI_1 - 1 
-BO_1 = st.slider('Buyer orientation', min_value= -1.00, max_value = 1.00, value = .16) 
+BO_1 = st.slider('Customer orientation', min_value= -1.00, max_value = 1.00, value = .16) 
 BO = BO_1 - .16
 
 Assets = st.number_input("Total assets, in million dollars:", value = 7000)
@@ -49,5 +49,5 @@ Size, Liquidity, Leverage, Debt, Costs = Cov(Assets, WC, Dlc, Dltt, MV, Cogs)
 ROA = (-.05 * TC)  + (-.22 * PI) + (-.06 * PI * TC) + (.01 * BO) + (.07 * Size) + (.02 * Liquidity) + (-.07 * Leverage) + (0.04 * Costs) + (.09 * Debt) + (-.01 * Concentration) + (.01 * SG) + (-.03 * ST) + (.003 * IG) + (.01 * IT)
 
 Response = round(ROA, 2)
-st.write("#### Operational Performance:", Response)
+st.write("#### Profitability:", Response)
 
